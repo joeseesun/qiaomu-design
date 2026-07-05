@@ -91,14 +91,16 @@ const bridgeScript = `
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 38px;
+      min-height: 44px;
       width: 100%;
       margin-top: 14px;
       border: 1px solid #191b21;
       border-radius: 8px;
       background: #191b21;
       color: #fff;
-      font: 750 14px/1 -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font: 750 14px/1.2 -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif;
+      white-space: normal;
+      writing-mode: horizontal-tb;
       cursor: pointer;
       transition: transform 140ms cubic-bezier(.23,1,.32,1), background 140ms cubic-bezier(.23,1,.32,1), box-shadow 140ms cubic-bezier(.23,1,.32,1);
     }
@@ -107,6 +109,24 @@ const bridgeScript = `
     .qmdp-pick-button:focus-visible { outline: 3px solid rgb(94 106 210 / 28%); outline-offset: 2px; }
     .qmdp-selected { outline: 3px solid rgb(25 27 33 / 78%) !important; outline-offset: 3px !important; }
     .qmdp-selected .qmdp-pick-button { background: #168a5f; border-color: #168a5f; }
+    body.qmdp-preview-active :is([data-design-option],[data-option],[data-choice],[data-direction],.card[data-name],article.option,.option[data-name],.option) {
+      min-width: 0;
+    }
+    body.qmdp-preview-active :is([data-design-option],[data-option],[data-choice],[data-direction],.card[data-name],article.option,.option[data-name],.option) > :is(p,.meta,.option-desc,.direction-summary,.qmdp-card-meta,.description,.summary) {
+      grid-column: 1 / -1 !important;
+      align-self: stretch;
+      min-width: min(240px, 100%) !important;
+      max-width: 100% !important;
+      writing-mode: horizontal-tb !important;
+      white-space: normal !important;
+      overflow-wrap: break-word;
+      word-break: normal;
+      line-height: 1.55;
+    }
+    body.qmdp-preview-active :is([data-design-option],[data-option],[data-choice],[data-direction],.card[data-name],article.option,.option[data-name],.option) > .qmdp-pick-button {
+      grid-column: 1 / -1 !important;
+      align-self: stretch;
+    }
     .qmdp-confirm {
       position: fixed;
       inset: 0;

@@ -53,6 +53,9 @@ node /Users/joe/.agents/skills/qiaomu-design/scripts/qiaomu-design-preview-serve
 - 三拨盘必须是可拖动滑块，默认值来自设计读取；用户调整时页面上的当前数值必须即时变化，
   无论数值显示节点是 `<output>`、`span` 还是其它 `[data-qmdp-output]` 元素。确认选择时随方向一起回传
 - 每个方向卡片底部有同样样式的明显按钮：`选择 A · 方向名`
+- 按钮上方如果保留方向短说明，必须是 full-width 横排 meta block，桌面实际宽度 ≥
+  240px / 18em，最多两行；不要放进 side rail、metric column、grid auto column 或
+  mockup 内部窄栏里。长解释一律移到方向说明区
 - 点选方向或按键 1-4 后，先打开确认弹层；弹层显示方向名、当前三拨盘值，并提供一个输入框
   让用户写调整建议。只有点击"确认并回传"才写入 `selection.json`
 - 选中确认后卡片有统一高亮状态，底部 toast 显示"已回传"
@@ -93,7 +96,9 @@ node /Users/joe/.agents/skills/qiaomu-design/scripts/qiaomu-design-preview-serve
    - 窄屏下不能让 mockup 内部控件和文字互相挤压；复杂桌面/控台方向使用内部缩放舞台、
      移动端专用构图或明确可控裁切，截图检查必须覆盖移动端
    - 只保留方向名、极短标签和选择按钮；不要把长解释混在样机卡里
+   - 按钮上方短说明若存在，必须占满卡片宽度横排展示；禁止一字一行、竖排或与按钮重叠
    - **明显的「选择 A/B/C/D · 方向名」按钮**，按钮位置、样式、交互在所有方向一致
+     且独立成行，不得 absolute/fixed 覆盖说明文字
    - 每个方向只能有一组选择按钮；运行本地回传服务后也不得出现重复按钮
 3. **方向说明区**：在样机区之外单独放说明，可以是右侧栏、下方说明卡、抽屉或 tabs；
    内容包括一句话气质、字体策略、色彩策略、记忆点、适用场景、推荐理由和可混搭提示。
@@ -168,12 +173,14 @@ node /Users/joe/.agents/skills/qiaomu-design/scripts/qiaomu-design-preview-serve
   .dials{display:grid;grid-template-columns:repeat(3,minmax(180px,1fr));gap:12px;padding:20px 32px;border-bottom:1px solid #ddd}
   .dial{display:grid;gap:6px;font-size:13px}.dial b{font-weight:650}.dial output{font-variant-numeric:tabular-nums}
   .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;padding:32px}
-  .card{background:#fff;border:2px solid #e2e2e0;border-radius:12px;overflow:hidden;cursor:pointer}
+  .card{background:#fff;border:2px solid #e2e2e0;border-radius:12px;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;min-width:0}
   .card.selected{border-color:#1a1a1a}
   .mock{height:300px;overflow:hidden;position:relative;display:grid;place-items:center}
   .mock>.stage{width:960px;height:600px;transform:scale(.5);transform-origin:center center}
   /* .stage 内是各方向的真实排版，各自独立的 CSS 作用域（用方向前缀类名） */
-  .meta{padding:16px 20px}
+  .meta{padding:16px 20px;display:grid;gap:10px;min-width:0;width:100%;box-sizing:border-box}
+  .meta p{margin:0;max-width:64ch;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;writing-mode:horizontal-tb;white-space:normal;overflow-wrap:break-word;word-break:normal;line-height:1.55}
+  .qmdp-pick-button{position:relative;z-index:1;width:calc(100% - 40px);min-height:44px;margin:0 20px 20px;white-space:normal;writing-mode:horizontal-tb}
   .confirm{position:fixed;inset:0;display:none;place-items:center;background:rgb(0 0 0 / 32%);z-index:20}
   .confirm.open{display:grid}.dialog{width:min(520px,calc(100vw - 32px));background:#fff;border-radius:12px;padding:20px}
   textarea{width:100%;min-height:84px;resize:vertical}
