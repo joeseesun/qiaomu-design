@@ -177,7 +177,7 @@ const bridgeScript = `
     ensureShell();
     const cards = Array.from(document.querySelectorAll(optionSelector)).filter(el => !el.closest('.qmdp-frame'));
     cards.slice(0, 8).forEach((el, index) => {
-      if (el.querySelector(':scope > .qmdp-pick-button')) return;
+      if (el.querySelector('.qmdp-pick-button')) return;
       const payload = optionPayload(el, 'button', index);
       const button = document.createElement('button');
       button.type = 'button';
