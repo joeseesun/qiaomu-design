@@ -8,7 +8,33 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE) [![Skill](https://img.shields.io/badge/Claude%20Code-Agent%20Skill-blue)](https://docs.anthropic.com/claude/docs/claude-code) [更新日志](CHANGELOG.md)
 
-**已验证：** 本 skill 的每条核心规则均来自一场 6 变体 × 7 任务 × 42 页面的受控对比实验（5 个头部设计 Skill + 无 Skill 对照组），并经浏览器实测交互验证。
+**已验证：** 本 skill 的每条核心规则均来自多轮主流设计 Skill 横评实验，并经浏览器实测交互验证。
+
+**完整横评：** [前端设计 Skill 横评实验室](https://designskill.qiaomu.ai/) 展示 8 个主流变体 × 10 个任务的 80 个真实生成页面，qiaomu-design 与 impeccable 均已补齐全部任务。
+
+## 案例截图
+
+以下 10 张截图来自 qiaomu-design 在横评实验里的真实生成页面。点击截图可打开线上可交互原始文件。
+
+| 落地页 · AI 会议笔记 | 仪表盘 · 电商运营 |
+|---|---|
+| <a href="https://designskill.qiaomu.ai/pages/qiaomu-design/landing.html"><img src="docs/assets/cases/qiaomu-design-landing.jpg" alt="qiaomu-design 生成的 AI 会议笔记落地页截图" width="420"></a> | <a href="https://designskill.qiaomu.ai/pages/qiaomu-design/dashboard.html"><img src="docs/assets/cases/qiaomu-design-dashboard.jpg" alt="qiaomu-design 生成的电商运营仪表盘截图" width="420"></a> |
+
+| 作品集 · 独立设计师 | 交互向导 · 机票预订 |
+|---|---|
+| <a href="https://designskill.qiaomu.ai/pages/qiaomu-design/portfolio.html"><img src="docs/assets/cases/qiaomu-design-portfolio.jpg" alt="qiaomu-design 生成的独立设计师作品集截图" width="420"></a> | <a href="https://designskill.qiaomu.ai/pages/qiaomu-design/wizard.html"><img src="docs/assets/cases/qiaomu-design-wizard.jpg" alt="qiaomu-design 生成的机票预订交互向导截图" width="420"></a> |
+
+| 设置中心 · 危险操作组件 | 创意 404 · 星空航行 |
+|---|---|
+| <a href="https://designskill.qiaomu.ai/pages/qiaomu-design/components.html"><img src="docs/assets/cases/qiaomu-design-components.jpg" alt="qiaomu-design 生成的设置中心组件面板截图" width="420"></a> | <a href="https://designskill.qiaomu.ai/pages/qiaomu-design/error404.html"><img src="docs/assets/cases/qiaomu-design-error404.jpg" alt="qiaomu-design 生成的创意 404 页面截图" width="420"></a> |
+
+| 多样性挑战 · 三向播放器 | 电商详情 · 手冲咖啡器 |
+|---|---|
+| <a href="https://designskill.qiaomu.ai/pages/qiaomu-design/diversity.html"><img src="docs/assets/cases/qiaomu-design-diversity.jpg" alt="qiaomu-design 生成的三向音乐播放器设计截图" width="420"></a> | <a href="https://designskill.qiaomu.ai/pages/qiaomu-design/detail.html"><img src="docs/assets/cases/qiaomu-design-detail.jpg" alt="qiaomu-design 生成的手冲咖啡器电商详情页截图" width="420"></a> |
+
+| 移动端 · 冥想助眠 App | 数据叙事 · 精品咖啡十年 |
+|---|---|
+| <a href="https://designskill.qiaomu.ai/pages/qiaomu-design/mobile.html"><img src="docs/assets/cases/qiaomu-design-mobile.jpg" alt="qiaomu-design 生成的冥想助眠移动端页面截图" width="420"></a> | <a href="https://designskill.qiaomu.ai/pages/qiaomu-design/story.html"><img src="docs/assets/cases/qiaomu-design-story.jpg" alt="qiaomu-design 生成的精品咖啡数据叙事页面截图" width="420"></a> |
 
 ## 这是什么
 
@@ -90,7 +116,9 @@ references/
 
 ## 实测验证
 
-规则不是拍脑袋写的。改造前先做了一场受控实验：6 个变体（anthropics/frontend-design、vercel/web-design-guidelines、ui-ux-pro-max、taste-skill、emil-design-eng、无 Skill 对照组）× 7 个任务（落地页/仪表盘/作品集/交互向导/组件面板/创意 404/多样性挑战）= 42 个页面，横评视觉个性、工程规范、动效工艺、交互完成度、组件合理性、创造性、多样性七个维度。每个维度胜者的核心机制被移植进本 skill，来源在 SKILL.md「血统说明」逐条可查。
+规则不是拍脑袋写的。改造前先做了一场受控实验：6 个变体（anthropics/frontend-design、vercel/web-design-guidelines、ui-ux-pro-max、taste-skill、emil-design-eng、无 Skill 对照组）× 7 个任务（落地页/仪表盘/作品集/交互向导/组件面板/创意 404/多样性挑战）= 42 个页面，横评视觉个性、工程规范、动效工艺、交互完成度、组件合理性、创造性、多样性七个维度。
+
+后续复测扩展为 [8 个变体 × 10 个任务的公开横评](https://designskill.qiaomu.ai/)，覆盖电商详情、移动端与数据叙事等新场景。每个维度胜者的核心机制被移植进本 skill，来源在 SKILL.md「血统说明」逐条可查。
 
 ## 限制与边界
 
@@ -143,7 +171,7 @@ Then just ask Claude Code: `redesign my landing page`.
 
 ## Verified
 
-Every core rule traces back to a controlled experiment: 6 variants × 7 tasks × 42 generated pages, scored on visual identity, engineering rigor, motion craft, interaction completeness, component sanity, creativity, and diversity. Provenance is documented per-module in SKILL.md.
+Every core rule traces back to controlled design-skill comparisons. The first run covered 6 variants × 7 tasks × 42 generated pages; the public follow-up expands to [8 variants × 10 tasks × 80 generated pages](https://designskill.qiaomu.ai/). The qiaomu-design screenshots above link to the live interactive case pages. Provenance is documented per-module in SKILL.md.
 
 ## Limits
 
