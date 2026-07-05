@@ -404,7 +404,11 @@ const bridgeScript = `
   document.addEventListener('click', event => {
     if (event.target.closest('.qmdp-confirm')) return;
     const pickButton = event.target.closest('.qmdp-pick-button');
-    if (pickButton && !pickButton.dataset.qmdpInjected) return;
+    if (
+      pickButton
+      && !pickButton.dataset.qmdpInjected
+      && (pickButton.dataset.qmdpNativeHandler === 'true' || pickButton.dataset.qmdpManaged === 'page')
+    ) return;
     const interactive = event.target.closest('a,input,select,textarea,button,[contenteditable="true"]');
     if (interactive && !pickButton) return;
     const el = event.target.closest(optionSelector);

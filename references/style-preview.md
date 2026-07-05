@@ -59,7 +59,9 @@ node /Users/joe/.agents/skills/qiaomu-design/scripts/qiaomu-design-preview-serve
   如果 HTML 已经自带选择按钮，按钮必须带 `.qmdp-pick-button` 或等价识别标记，且运行服务后要确认
   实际 DOM 中每个方向仍只有一颗选择按钮；按钮嵌在 `.meta` 等内部容器时也必须能被服务识别
 - 若 HTML 自带选择按钮和回传 handler，服务不能再对该按钮重复触发回传；服务自动注入的按钮
-  必须带 `data-qmdp-injected` 或等价标识
+  必须带 `data-qmdp-injected` 或等价标识。页面自带按钮如果没有自己的 handler，仍应由
+  服务接管；只有显式标记 `data-qmdp-native-handler="true"` 或 `data-qmdp-managed="page"`
+  的按钮才跳过服务处理
 - 外壳保持中性克制，不参与方向风格竞争；方向差异只发生在 demo/mockup 内
 
 ### 多方向隔离协议

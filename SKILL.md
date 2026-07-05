@@ -283,7 +283,9 @@ Phase 2 的视觉预览必须优先启动 `scripts/qiaomu-design-preview-server.
 - 如果生成的 HTML 已经自带选择按钮，必须给按钮加 `.qmdp-pick-button` 或等价标识，
   让服务识别并避免重复注入；渲染验收时若出现双层选择按钮，必须修正后再交付
 - 如果生成 HTML 自带按钮和回传 handler，服务不得再对该按钮重复回传；自动注入按钮必须
-  有可识别标记（如 `data-qmdp-injected`）
+  有可识别标记（如 `data-qmdp-injected`）。页面自带按钮如果希望由页面自己的 handler
+  完全接管，必须显式加 `data-qmdp-native-handler="true"` 或 `data-qmdp-managed="page"`；
+  未标记的 `.qmdp-pick-button` 默认由预览服务接管并打开确认弹层
 - 服务写入预览目录内的 `selection.json`，并在终端打印
   `QIAOMU_DESIGN_SELECTION::{...}` 作为调用方可监听哨兵
 - 执行代理必须监听文件事件或读取服务日志，实际观察到选择后才能进入 Phase 3；
