@@ -20,11 +20,7 @@
 
 ### 视频案例 · 冥想网站
 
-这个冥想网站是 qiaomu-design 生成的完整网页案例，展示了中文排版、克制动效、留白节奏和东方禅意视觉系统。
-
-<a href="docs/assets/cases/qiaomu-design-meditation-site.mp4"><img src="docs/assets/cases/qiaomu-design-meditation-site.jpg" alt="qiaomu-design 生成的冥想网站案例封面" width="860"></a>
-
-[观看 40 秒 MP4 演示](docs/assets/cases/qiaomu-design-meditation-site.mp4)
+![qiaomu-design 生成的冥想网站案例动图](docs/assets/cases/qiaomu-design-meditation-site.gif)
 
 ### 横评截图
 
@@ -62,7 +58,7 @@
 
 | 能力 | 你得到什么 |
 |---|---|
-| 风格试衣间 | 4 个互斥方向的真实迷你 mockup，生成在 `design-previews/YYYY-MM-DD-任务名/index.html`，点选/键盘回传 |
+| 风格试衣间 | 4 个互斥方向的真实迷你 mockup，生成在 `design-previews/YYYY-MM-DD-任务名/index.html`，点选/键盘进入确认弹层，带拨盘与建议一起回传 |
 | 设计读取 + 三拨盘 | 按任务类型自适应冒险度/动效/密度：功能页收敛、开放命题放开 |
 | AI 反套路禁令 | 禁 AI 紫渐变、禁 Inter、禁斜体、禁居中套路、禁 AI 文案词——从源头消灭"AI 味" |
 | 中文排版规范 | 系统字体栈优先、装饰中文字体子集化、盘古之白、行高/字重/标点纪律 |
@@ -107,7 +103,7 @@ cp -r qiaomu-design ~/.claude/skills/qiaomu-design
 你：帮我重新设计博客首页
  ↓ Phase 1  诊断：设计读取 + 三拨盘 + 2-3 个关键问题
  ↓ Phase 2  风格试衣间：生成 design-previews/YYYY-MM-DD-任务名/index.html
-            4 个方向实际看着选，点选后回传到当前工作流
+            4 个方向实际看着选，确认后把方向、拨盘和建议回传
  ↓ Phase 3  执行：先立 DESIGN.md 锚 → 写码 → preflight 门禁 → 交付
 ```
 
@@ -119,7 +115,7 @@ cp -r qiaomu-design ~/.claude/skills/qiaomu-design
 SKILL.md                       人格 + 工作流 + 拨盘 + 反套路禁令 + 自进化协议
 references/
   user-preferences.md          用户偏好账本（自进化写入，最高优先级）
-  style-preview.md             风格试衣间规范（4 方向 + 60s 自动推进）
+  style-preview.md             风格试衣间规范（4 方向 + 手动确认回传）
   divergence-playbook.md       发散手册（轴级差异检验 + 14 种美学方向）
   motion-craft.md              动效工艺（Emil Kowalski 体系）
   engineering-checklist.md     工程验收（Vercel WIG + 组件行为标准）
@@ -174,7 +170,7 @@ Then just ask Claude Code: `redesign my landing page`.
 ## What you get
 
 - **Recommended models**: use GLM 5.2 or Claude for this skill. In recent runs, GPT models inside Codex produced poor design results: too conservative, sparse, and template-like for high-quality visual work.
-- **Style fitting room**: 4 mutually-divergent direction mockups (real fonts/colors/layout) in `design-previews/YYYY-MM-DD-task/index.html`. Pick by click or keys; the local preview server reports the selection back to the current workflow.
+- **Style fitting room**: 4 mutually-divergent direction mockups (real fonts/colors/layout) in `design-previews/YYYY-MM-DD-task/index.html`. Pick by click or keys, confirm with dial values and optional notes, then the local preview server reports the selection back to the current workflow.
 - **Design read + three dials**: VARIANCE / MOTION / DENSITY auto-tuned per task type — restrained on functional UI, bold on open creative briefs.
 - **Anti-slop bans**: no AI-purple gradients, no Inter, no italics, no centered-hero clichés, no "revolutionary/seamless" copy.
 - **Chinese typography rules**: system font stack first, subset decorative CJK webfonts (5-20 MB otherwise), CJK spacing/punctuation/line-height discipline.
@@ -186,7 +182,7 @@ Then just ask Claude Code: `redesign my landing page`.
 
 ## Verified
 
-Every core rule traces back to controlled design-skill comparisons. The first run covered 6 variants × 7 tasks × 42 generated pages; the public follow-up expands to [8 variants × 10 tasks × 80 generated pages](https://designskill.qiaomu.ai/). The qiaomu-design screenshots above link to the live interactive case pages. The meditation website video case is available at [`docs/assets/cases/qiaomu-design-meditation-site.mp4`](docs/assets/cases/qiaomu-design-meditation-site.mp4). Provenance is documented per-module in SKILL.md.
+Every core rule traces back to controlled design-skill comparisons. The first run covered 6 variants × 7 tasks × 42 generated pages; the public follow-up expands to [8 variants × 10 tasks × 80 generated pages](https://designskill.qiaomu.ai/). The qiaomu-design screenshots above link to the live interactive case pages. The meditation website case is embedded as an animated GIF above, with the source MP4 kept at [`docs/assets/cases/qiaomu-design-meditation-site.mp4`](docs/assets/cases/qiaomu-design-meditation-site.mp4). Provenance is documented per-module in SKILL.md.
 
 ## Limits
 
