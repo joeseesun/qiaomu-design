@@ -1,259 +1,147 @@
-# qiaomu-design-advisor
+# qiaomu-design · 偏执型设计顾问
 
-> Opinionated Design Advisor — Jobs-style product intuition + Rams-style functional purism + 58 real-world design system references.
+**中文** | [English](#english)
+
+> 让 AI 做出"不像 AI 做的"设计：Jobs 式产品直觉 + Rams 式功能纯粹主义，融合五大顶级设计 Skill 的实测精华。
 >
-> 偏执型设计顾问 — Jobs 式产品直觉 + Rams 式功能纯粹主义 + 58 个真实网站设计系统参考库。
+> An opinionated design advisor skill for Claude Code: anti-generic aesthetics, engineering-grade delivery, and a visual "style fitting room" — distilled from a controlled experiment across 5 top design skills.
 
-**[English](#english) | [中文](#中文)**
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE) [![Skill](https://img.shields.io/badge/Claude%20Code-Agent%20Skill-blue)](https://docs.anthropic.com/claude/docs/claude-code) [更新日志](CHANGELOG.md)
+
+**已验证：** 本 skill 的每条核心规则均来自一场 6 变体 × 7 任务 × 42 页面的受控对比实验（5 个头部设计 Skill + 无 Skill 对照组），并经浏览器实测交互验证。
+
+## 这是什么
+
+一个 Claude Code Agent Skill。安装后，当你说"帮我设计 / 重新设计 / 优化界面"时，它会接管设计流程：先诊断真实需求，再用**可视化风格试衣间**给你 4 个方向实际看着选，确认后按工程验收标准交付——而不是直接吐一个紫渐变居中 Hero 的"AI 味"页面。
+
+## 为什么值得用
+
+大多数 AI 设计的问题不是画不好，而是：默认审美收敛（Inter + 紫渐变 + 三等分卡片）、方向靠文字描述拍脑袋选、交付物过不了工程验收、中文排版直接套英文规则。本 skill 针对这四个问题各给了一套实测过的机制。
+
+## 核心能力
+
+| 能力 | 你得到什么 |
+|---|---|
+| 风格试衣间 | 4 个互斥方向的真实迷你 mockup 本地预览页，点选/键盘/60s 超时自动推荐，先看后选 |
+| 设计读取 + 三拨盘 | 按任务类型自适应冒险度/动效/密度：功能页收敛、开放命题放开 |
+| AI 反套路禁令 | 禁 AI 紫渐变、禁 Inter、禁斜体、禁居中套路、禁 AI 文案词——从源头消灭"AI 味" |
+| 中文排版规范 | 系统字体栈优先、装饰中文字体子集化、盘古之白、行高/字重/标点纪律 |
+| 动效工艺库 | Emil Kowalski 体系：缓动曲线、分场景时长、按压反馈、stagger、进出不对称 |
+| 工程验收清单 | Vercel 规范：a11y、表单、焦点陷阱、危险操作防护，`file:line` 格式审查 |
+| 58 站设计系统库 | Stripe/Linear/Apple 等真实网站 DESIGN.md（Google Stitch 格式），可直接"参考 XX 做" |
+| 打磨模式 | 已有页面不推倒重来：Audit/Critique/Polish/Animate/Harden/Live 六动作 |
+| 交付门禁 | preflight 强制检查清单，任何一条不过就不交付 |
+| 自进化机制 | 用户反馈自动抽象成规则写入偏好账本，越用越贴合你 |
+
+## 快速开始
+
+```bash
+npx skills add joeseesun/qiaomu-design
+```
+
+然后在 Claude Code 里直接说：
+
+```
+帮我设计一个产品落地页
+```
+
+<details>
+<summary>手动安装</summary>
+
+```bash
+git clone https://github.com/joeseesun/qiaomu-design.git
+cp -r qiaomu-design ~/.claude/skills/qiaomu-design
+```
+
+前置条件：已安装 [Claude Code](https://docs.anthropic.com/claude/docs/claude-code)。
+
+</details>
+
+## 使用方式
+
+**触发词**：重新设计 / redesign / 优化界面 / 设计方案 / UI 审查 / 帮我看看设计 / 参考 XX 的设计 / 给我一个设计系统
+
+**典型流程**（三阶段，每阶段等你确认）：
+
+```
+你：帮我重新设计博客首页
+ ↓ Phase 1  诊断：设计读取 + 三拨盘 + 2-3 个关键问题
+ ↓ Phase 2  风格试衣间：生成 design-preview.html，4 个方向实际看着选
+            （不选？60 秒后自动按推荐方向继续）
+ ↓ Phase 3  执行：先立 DESIGN.md 锚 → 写码 → preflight 门禁 → 交付
+```
+
+**已有页面要优化**：说"帮我打磨这个页面 / 反 AI 味 / 加动效"，走打磨模式，不推倒重来。
+
+## 工作原理
+
+```
+SKILL.md                       人格 + 工作流 + 拨盘 + 反套路禁令 + 自进化协议
+references/
+  user-preferences.md          用户偏好账本（自进化写入，最高优先级）
+  style-preview.md             风格试衣间规范（4 方向 + 60s 自动推进）
+  divergence-playbook.md       发散手册（轴级差异检验 + 14 种美学方向）
+  motion-craft.md              动效工艺（Emil Kowalski 体系）
+  engineering-checklist.md     工程验收（Vercel WIG + 组件行为标准）
+  chinese-typography.md        中文排版与配色（W3C clreq / Ant Design / Apple HIG）
+  preflight.md                 交付前门禁
+  design-systems/{58 站}/      DESIGN.md 设计系统参考库
+```
+
+## 实测验证
+
+规则不是拍脑袋写的。改造前先做了一场受控实验：6 个变体（anthropics/frontend-design、vercel/web-design-guidelines、ui-ux-pro-max、taste-skill、emil-design-eng、无 Skill 对照组）× 7 个任务（落地页/仪表盘/作品集/交互向导/组件面板/创意 404/多样性挑战）= 42 个页面，横评视觉个性、工程规范、动效工艺、交互完成度、组件合理性、创造性、多样性七个维度。每个维度胜者的核心机制被移植进本 skill，来源在 SKILL.md「血统说明」逐条可查。
+
+## 限制与边界
+
+- 这是 Claude Code 的 Agent Skill，不是独立软件；效果依赖模型能力
+- 风格试衣间是本地静态 HTML，"点选回传"依赖剪贴板/对话确认，不含服务端
+- 58 站 DESIGN.md 库来自公开网站的设计系统提炼，用于风格参考，不代表对应公司背书
+- 装饰性中文字体默认禁用（体积 5-20MB），只在创意标题场景子集化加载——这是特性不是缺陷
+
+## 来源与致谢
+
+MIT License。融合机制来源（详见 SKILL.md 血统说明）：[anthropics/skills](https://github.com/anthropics/skills) · [vercel-labs/web-interface-guidelines](https://github.com/vercel-labs/web-interface-guidelines) · [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) · [emilkowalski/skills](https://github.com/emilkowalski/skills) · [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) · [pbakaus/impeccable](https://github.com/pbakaus/impeccable) · [arvindrk/extract-design-system](https://github.com/arvindrk/extract-design-system) · [mattpocock/skills](https://github.com/mattpocock/skills) · DESIGN.md 库基于 [VoltAgent/awesome-design-md](https://github.com/VoltAgent/awesome-design-md)（Google Stitch 格式）
+
+## 关于向阳乔木
+
+- 网站：[qiaomu.ai](https://qiaomu.ai) · 博客：[blog.qiaomu.ai](https://blog.qiaomu.ai) · 工具推荐：[tuijian.qiaomu.ai](https://tuijian.qiaomu.ai)
+- X：[@vista8](https://x.com/vista8) · GitHub：[@joeseesun](https://github.com/joeseesun) · 公众号：向阳乔木推荐看
 
 ---
 
 <a name="english"></a>
-## English
 
-Not sure what design style to use? Just say "help me design" — AI will ask 2-3 questions to match you with one of 10 design archetypes, then provide pixel-perfect solutions based on real design systems from Stripe, Vercel, Linear, and more.
+# English
 
-### Installation
+**qiaomu-design** is a Claude Code Agent Skill that makes AI-generated interfaces stop looking AI-generated. It fuses the experimentally-validated strengths of five top design skills (Anthropic frontend-design, Vercel web-interface-guidelines, taste-skill, Emil Kowalski's design engineering, ui-ux-pro-max) into one opinionated design advisor.
 
-#### Prerequisites
-
-- [ ] Claude Code installed ([Installation Guide](https://docs.anthropic.com/claude/docs/claude-code))
-- [ ] Node.js 18+ installed (verify: `node --version`)
-
-#### Install Steps
+## Install
 
 ```bash
-npx skills add joeseesun/qiaomu-design-advisor
+npx skills add joeseesun/qiaomu-design
 ```
 
-Verify installation:
-```bash
-ls ~/.claude/skills/qiaomu-design-advisor
-```
+Then just ask Claude Code: `redesign my landing page`.
 
-### Core Capabilities
+## What you get
 
-#### 1. Three-Phase Design Workflow
+- **Style fitting room**: a local HTML preview with 4 mutually-divergent direction mockups (real fonts/colors/layout). Pick by click or keys; after 60s it auto-advances with the recommended direction.
+- **Design read + three dials**: VARIANCE / MOTION / DENSITY auto-tuned per task type — restrained on functional UI, bold on open creative briefs.
+- **Anti-slop bans**: no AI-purple gradients, no Inter, no italics, no centered-hero clichés, no "revolutionary/seamless" copy.
+- **Chinese typography rules**: system font stack first, subset decorative CJK webfonts (5-20 MB otherwise), CJK spacing/punctuation/line-height discipline.
+- **Motion craft** (Emil Kowalski system) and **engineering checklist** (Vercel WIG): easing/durations/stagger, a11y, focus traps, destructive-action guards.
+- **58 real-site DESIGN.md library** (Stripe, Linear, Apple…, Google Stitch format) for "make it like X" requests.
+- **Polish mode** for existing pages (Audit/Critique/Polish/Animate/Harden/Live) — no rewrites from scratch.
+- **Pre-flight gate**: a hard checklist; nothing ships if any item fails.
+- **Self-evolution**: your feedback gets abstracted into a preferences ledger the skill reads before every task.
 
-```
-Phase 1: Diagnosis → Output report → Wait for confirmation
-Phase 2: Three proposals (Incremental/Reshape/Ideal) → Wait for selection
-Phase 3: Pixel-perfect execution
-```
+## Verified
 
-Each phase stops and waits for feedback — no assumptions.
+Every core rule traces back to a controlled experiment: 6 variants × 7 tasks × 42 generated pages, scored on visual identity, engineering rigor, motion craft, interaction completeness, component sanity, creativity, and diversity. Provenance is documented per-module in SKILL.md.
 
-#### 2. 58 Real-World DESIGN.md Systems
+## Limits
 
-Based on [VoltAgent/awesome-design-md](https://github.com/VoltAgent/awesome-design-md), includes complete design systems from 58 websites ([Google Stitch DESIGN.md format](https://stitch.withgoogle.com/docs/design-md/format/)) — color palettes, typography, component styles, spacing systems, responsive rules, etc.
+Requires Claude Code. The fitting room is a static local HTML page (selection returns via clipboard/chat). The DESIGN.md library is distilled from public sites for reference, not endorsement.
 
-#### 3. Style Recommendation Engine (10 Design Archetypes)
-
-Not sure what style you need? AI asks 2-3 diagnostic questions to match the best direction from 10 archetypes:
-
-| # | Style | Representative Sites | One-liner |
-|---|-------|---------------------|-----------|
-| 1 | Minimal Precision | Vercel, Linear, Tesla | B&W, mathematically precise |
-| 2 | Warm Premium | Stripe, Notion, Airbnb | Warm professionalism |
-| 3 | Dark Professional | Cursor, Supabase, Superhuman | Immersive tooling |
-| 4 | Vibrant Friendly | Figma, Miro, Airtable | Colorful, approachable |
-| 5 | Cinematic Immersive | SpaceX, RunwayML, ElevenLabs | Full-screen impact |
-| 6 | Enterprise Stable | IBM, HashiCorp, MongoDB | Structured, trustworthy |
-| 7 | Financial Refined | Coinbase, Revolut, Kraken | Security + sophistication |
-| 8 | Luxury Tactile | Ferrari, Lamborghini, Apple | Unspoken premium |
-| 9 | Developer Native | Resend, Warp, Ollama | Terminal aesthetic |
-| 10 | Content First | Notion, Mintlify, Claude | Reading experience priority |
-
-### Usage Examples
-
-```
-"Help me design an AI product landing page"
-"Redesign the payment page using Stripe's design style"
-"This interface doesn't work, help me see what's wrong"
-"Build a dashboard like Linear"
-"Help me create a design system"
-"Optimize the interaction experience of this page"
-```
-
-### Design System Coverage
-
-**AI/ML** (12): Claude, Cursor, Replicate, Ollama, Cohere, ElevenLabs...
-
-**Dev Tools** (14): Vercel, Linear, Supabase, Resend, Sentry, Raycast...
-
-**Infrastructure** (6): Stripe, MongoDB, HashiCorp, ClickHouse, Sanity, Composio
-
-**Design/Productivity** (10): Figma, Notion, Miro, Framer, Airtable, Pinterest...
-
-**Fintech** (4): Coinbase, Revolut, Kraken, Wise
-
-**Enterprise/Consumer** (7): Apple, Airbnb, Spotify, Uber, SpaceX, IBM, NVIDIA
-
-**Automotive** (5): Ferrari, Lamborghini, BMW, Tesla, Renault
-
-### Update Design Systems
-
-```bash
-# Update a single site
-cd ~/.claude/skills/qiaomu-design-advisor/references/design-systems/{site}
-npx getdesign@latest add {site}
-```
-
-### Acknowledgments
-
-The design system Markdown files in this project come from [VoltAgent/awesome-design-md](https://github.com/VoltAgent/awesome-design-md).
-
-Thanks to the VoltAgent team for collecting and organizing complete design systems from 58 top websites, standardized according to the [Google Stitch DESIGN.md format](https://stitch.withgoogle.com/docs/design-md/format/). These high-quality design references are the core foundation of this Skill.
-
-If you need these design system files:
-- **Original Repository**: https://github.com/VoltAgent/awesome-design-md
-- **Format Specification**: https://stitch.withgoogle.com/docs/design-md/format/
-
-### Troubleshooting
-
-| Issue | Solution |
-|-------|----------|
-| "Design system files not found" | Check if `~/.claude/skills/qiaomu-design-advisor/references/design-systems/` directory exists |
-| AI doesn't provide specific design proposals | Clearly tell AI which phase you're in (diagnosis/proposal/execution) to avoid skipping workflow |
-| Want to reference a site not in the list | Manually add: `cd ~/.claude/skills/qiaomu-design-advisor/references/design-systems && npx getdesign@latest add <domain>` |
-
-### License
-
-MIT
-
-### Follow the Author
-
-If this project helps you, follow me for more AI tool shares:
-
-- **X (Twitter)**: [@vista8](https://x.com/vista8)
-- **WeChat Official Account「向阳乔木推荐看」**:
-
-<p align="center">
-  <img src="https://github.com/joeseesun/terminal-boost/raw/main/assets/wechat-qr.jpg?raw=true" alt="向阳乔木推荐看公众号二维码" width="300">
-</p>
-
----
-
-<a name="中文"></a>
-## 中文
-
-不知道该用什么设计风格？说一句"帮我设计"，AI 会通过 2-3 个问题帮你从 10 大风格原型中找到方向，再基于 Stripe、Vercel、Linear 等真实网站的设计系统给出像素级方案。
-
-### 安装
-
-#### 前置条件
-
-- [ ] Claude Code 已安装（[安装指南](https://docs.anthropic.com/claude/docs/claude-code)）
-- [ ] Node.js 18+ 已安装（验证：`node --version`）
-
-#### 安装步骤
-
-```bash
-npx skills add joeseesun/qiaomu-design-advisor
-```
-
-验证安装：
-```bash
-ls ~/.claude/skills/qiaomu-design-advisor
-```
-
-### 核心能力
-
-#### 1. 三阶段设计工作流
-
-```
-Phase 1: 诊断 → 输出诊断报告 → 等用户确认
-Phase 2: 三套方案（渐进/重塑/理想）→ 等用户选择
-Phase 3: 像素级执行
-```
-
-每个阶段强制停止等待反馈，不会自作主张。
-
-#### 2. 58 个真实网站的 DESIGN.md 设计系统
-
-基于 [VoltAgent/awesome-design-md](https://github.com/VoltAgent/awesome-design-md)，内置 58 个网站的完整设计系统（[Google Stitch DESIGN.md 格式](https://stitch.withgoogle.com/docs/design-md/format/)），包含色板、字体、组件样式、间距系统、响应式规则等。
-
-#### 3. 风格推荐引擎（10 大设计原型）
-
-不确定要什么风格？AI 通过 2-3 个诊断问题，从 10 大原型中匹配最合适的方向：
-
-| # | 风格 | 代表网站 | 一句话 |
-|---|------|----------|--------|
-| 1 | 极简精确 | Vercel, Linear, Tesla | 黑白、数学般精确 |
-| 2 | 暖色高端 | Stripe, Notion, Airbnb | 温暖的专业感 |
-| 3 | 深色专业 | Cursor, Supabase, Superhuman | 沉浸式工具 |
-| 4 | 活力友好 | Figma, Miro, Airtable | 多色、亲和力 |
-| 5 | 电影沉浸 | SpaceX, RunwayML, ElevenLabs | 全屏震撼视觉 |
-| 6 | 企业稳重 | IBM, HashiCorp, MongoDB | 结构化、可信赖 |
-| 7 | 金融精致 | Coinbase, Revolut, Kraken | 安全感 + 精致 |
-| 8 | 奢华质感 | Ferrari, Lamborghini, Apple | 不言自明的高级 |
-| 9 | 开发者原生 | Resend, Warp, Ollama | 终端风 |
-| 10 | 内容优先 | Notion, Mintlify, Claude | 阅读体验至上 |
-
-### 使用示例
-
-```
-"帮我设计一个 AI 产品的官网"
-"参考 Stripe 的设计风格，重新设计支付页面"
-"这个界面不行，帮我看看哪里有问题"
-"做一个像 Linear 那样的仪表板"
-"帮我建一个设计系统"
-"优化这个页面的交互体验"
-```
-
-### 设计系统覆盖范围
-
-**AI/ML** (12): Claude, Cursor, Replicate, Ollama, Cohere, ElevenLabs...
-
-**开发工具** (14): Vercel, Linear, Supabase, Resend, Sentry, Raycast...
-
-**基础设施** (6): Stripe, MongoDB, HashiCorp, ClickHouse, Sanity, Composio
-
-**设计/效率** (10): Figma, Notion, Miro, Framer, Airtable, Pinterest...
-
-**金融科技** (4): Coinbase, Revolut, Kraken, Wise
-
-**企业/消费** (7): Apple, Airbnb, Spotify, Uber, SpaceX, IBM, NVIDIA
-
-**汽车品牌** (5): Ferrari, Lamborghini, BMW, Tesla, Renault
-
-### 更新设计系统
-
-```bash
-# 更新单个站点
-cd ~/.claude/skills/qiaomu-design-advisor/references/design-systems/{site}
-npx getdesign@latest add {site}
-```
-
-### 致谢
-
-本项目的设计系统 Markdown 文件来自 [VoltAgent/awesome-design-md](https://github.com/VoltAgent/awesome-design-md) 项目。
-
-感谢 VoltAgent 团队收集整理了 58 个顶级网站的完整设计系统，并遵循 [Google Stitch DESIGN.md 格式](https://stitch.withgoogle.com/docs/design-md/format/) 进行标准化。这些高质量的设计参考资料是本 Skill 的核心基础。
-
-如果你也需要这些设计系统文件，可以直接访问：
-- **原始仓库**: https://github.com/VoltAgent/awesome-design-md
-- **格式规范**: https://stitch.withgoogle.com/docs/design-md/format/
-
-### 常见问题
-
-| 问题 | 解决方法 |
-|------|----------|
-| 提示"找不到设计系统文件" | 检查 `~/.claude/skills/qiaomu-design-advisor/references/design-systems/` 目录是否存在 |
-| AI 没有给出具体的设计方案 | 明确告诉 AI 你处于哪个阶段（诊断/方案/执行），避免跳过工作流 |
-| 想参考某个网站但不在列表中 | 可以手动添加：`cd ~/.claude/skills/qiaomu-design-advisor/references/design-systems && npx getdesign@latest add <网站域名>` |
-
-### License
-
-MIT
-
-### 关注作者
-
-如果这个项目对你有帮助，欢迎关注我获取更多 AI 工具分享：
-
-- **X (Twitter)**: [@vista8](https://x.com/vista8)
-- **微信公众号「向阳乔木推荐看」**:
-
-<p align="center">
-  <img src="https://github.com/joeseesun/terminal-boost/raw/main/assets/wechat-qr.jpg?raw=true" alt="向阳乔木推荐看公众号二维码" width="300">
-</p>
+MIT © [joeseesun](https://github.com/joeseesun)
