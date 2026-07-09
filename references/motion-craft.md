@@ -2,6 +2,16 @@
 
 > 蒸馏自 Emil Kowalski 的设计工程哲学（Sonner / Vaul 作者，13M+ 周下载）。
 > 核心信念：用户注意不到的细节会复利叠加成"说不出为什么但就是好用"的体验。
+> 2026-07-09 对齐 `emilkowalski/skills` upstream：补入 review-animations、animation-vocabulary、
+> apple-design 的场景分流。
+
+## 零、先选正确手册
+
+- **写动画/过渡/交互反馈**：先读本文件。
+- **做手势驱动 UI**（sheet、drawer、swipe、drag、carousel、spring、透明浮层）：同时读
+  `apple-fluid-interfaces.md`。
+- **审查动效代码**：按 `motion-review.md` 输出 Before / After / Why 表格。
+- **用户只是在描述"那个动效叫什么"**：先查 `animation-vocabulary.md`，把感觉转成准确术语。
 
 ## 一、动画决策框架（写任何动画代码前按序回答）
 
@@ -94,7 +104,30 @@ transition 可中断可重定向；keyframes 每次从零重播。Toast、开关
 ### crossfade 不顺就加微模糊
 两状态交叉时叠影不自然，过渡期加 `filter: blur(2px)` 骗过眼睛。模糊 < 20px（Safari 开销大）。
 
-## 三、Stagger（交错入场）
+## 三、弹簧与可中断性
+
+弹簧没有固定时长，它用物理参数自然收敛。适合：
+
+- 拖拽释放、swipe-to-dismiss、可抓取 sheet
+- 用户可能中途反向或打断的动画
+- 装饰性 mouse tracking（不服务精确读数）
+- 需要继承速度的物理化界面
+
+默认不要弹。专业 UI 用接近 critically damped 的 spring；只有用户 flick / throw / drag release
+带来真实动量时，才给 0.1-0.3 的轻微 bounce。
+
+```js
+// Apple/Motion 风格，容易推理
+{ type: "spring", duration: 0.4, bounce: 0 }
+
+// 动量释放才允许轻微弹性
+{ type: "spring", duration: 0.4, bounce: 0.2, velocity }
+```
+
+可中断 UI 从**当前屏幕值**继续，而不是从逻辑目标值重开。keyframes 会从零重播；
+transition 可重定向；手势最好用 spring。
+
+## 四、Stagger（交错入场）
 
 多元素同时入场时，每项延迟 30-80ms 依次出现：
 
@@ -106,15 +139,19 @@ transition 可中断可重定向；keyframes 每次从零重播。Toast、开关
 
 延迟过长会显得慢。stagger 是装饰——播放期间绝不阻塞交互。
 
-## 四、性能铁律
+## 五、性能铁律
 
 - **只动 `transform` 和 `opacity`**（跳过 layout/paint，跑 GPU）
+- 禁止动 `width` / `height` / `margin` / `padding` / `top` / `left`
 - 拖拽时直接改元素 `style.transform`，不要改父级 CSS 变量（会触发全子树重算）
 - CSS 动画跑合成线程，主线程繁忙时也不掉帧；JS 动画（rAF）会掉。
   预定动画用 CSS，动态可中断的用 JS
 - 需要 JS 控制又要 CSS 性能时用 WAAPI：`element.animate([...], { easing: 'cubic-bezier(...)' })`
+- Framer Motion / Motion 在高负载场景不要用 `x` / `y` / `scale` shorthand；用完整
+  `transform: "translateX(...)"` 才更接近 GPU 合成路径
+- `will-change` 只在临近动画时使用；长期挂在大量元素上会浪费内存
 
-## 五、无障碍
+## 六、无障碍
 
 ```css
 @media (prefers-reduced-motion: reduce) {
@@ -127,15 +164,29 @@ transition 可中断可重定向；keyframes 每次从零重播。Toast、开关
 
 reduced-motion 是"更少更温和"，不是"全部归零"。
 
-## 六、拖拽手势（进阶）
+## 七、拖拽手势（进阶）
 
+- **即时响应**：按下那一刻就给反馈，不等 `click` 或手势结束
+- **1:1 跟手**：拖拽时内容跟着指针，保留用户抓取位置偏移，不瞬移到中心
 - **动量判定**：`velocity = |dragDistance| / elapsedTime`，> 0.11 即可 dismiss，
   不强制拖过阈值——快速一甩就该生效
+- **速度交接**：释放时把 velocity 交给 spring；否则松手瞬间会断
+- **投射落点**：用 release velocity 预测 resting point，再吸附到最近 snap point
 - **边界阻尼**：拖过自然边界时递增阻力，现实中的东西是先减速不是撞墙
 - **pointer capture**：拖拽开始后捕获所有指针事件，出界不断
 - **多指保护**：拖拽中忽略新增触点，防止换手指跳位
+- **hysteresis**：约 10px 后再确认横/纵向意图，减少误判
 
-## 七、动效一致性（Cohesion）
+涉及 sheet/drawer/swipe/carousel 时，不要只看本节；必须追加读 `apple-fluid-interfaces.md`。
+
+## 八、调试动效
+
+- 慢放到 2-5 倍，看缓动是否突然停、origin 是否错、颜色/透明度是否错拍
+- 用 Chrome DevTools Animations 面板逐帧看关键帧
+- 手势必须在真实触控设备或至少移动端模拟里测试；复杂手势只看桌面鼠标不算验收
+- 次日用新鲜眼睛复查。全速下看不到的问题，隔天常常会跳出来
+
+## 九、动效一致性（Cohesion）
 
 动效风格必须匹配组件人格：玩具感的产品可以弹一点，专业仪表盘必须干脆利落。
 缓动、时长、视觉设计、命名要在同一个气质里。隔天用新鲜眼睛慢放复查动画——
@@ -153,5 +204,11 @@ reduced-motion 是"更少更温和"，不是"全部归零"。
 | UI 时长 > 300ms | 降到 150-250ms |
 | hover 无媒体查询 | 包 `@media (hover: hover)` |
 | 连点组件用 keyframes | 换 transition |
+| 高频/键盘操作有动画 | 删除动画 |
+| 动了 layout 属性 | 换 `transform` / `opacity` |
+| 拖拽用父级 CSS 变量驱动子级 | 直接改当前元素 `style.transform` |
+| Framer Motion 高负载动效用 `x/y/scale` | 用完整 `transform` 字符串 |
+| 手势释放没有 velocity handoff | 把 release velocity 交给 spring |
+| 边界硬停 | 加 rubber-band / friction |
 | 进出同速 | 出场更快 |
 | 全员同时出现 | 加 30-80ms stagger |

@@ -22,6 +22,7 @@
 - [ ] 眉批（eyebrow）数量 ≤ ⌈section 数 / 3⌉；无 "SECTION 01" 式编号 meta-label
 - [ ] H1 不超过 2-3 行（窄容器多行大标题 = 失败）
 - [ ] Bento/网格无空洞（`grid-auto-flow: dense`，span 完全咬合）
+- [ ] 无左侧竖线装饰（border-left 色条 / inset 竖条）用于选中或卡片强调（P-38）
 
 ## A2. 进攻三步核验（craft-loop.md）
 
@@ -47,10 +48,12 @@
 ## A5. 方案预览交付门（Phase 2 必查）
 
 - [ ] 如果用户要求设计方案、重构方案、多个方向或风格建议，已生成可打开的浅层预览目录 `design-previews/YYYY-MM-DD-任务名/index.html`
+- [ ] 若用户追问没有预览、要求看预览或强调四种方向，当前回合已立即补交四方向预览页；没有只解释流程、只道歉或再次要求确认
 - [ ] `index.html` 是自包含 HTML，并通过 HTML 解析或等价结构检查
 - [ ] 预览目录非隐藏、层级不超过 `design-previews/<date-task>/`；用户可直接找到、打包、分享
 - [ ] 预览页用低干扰单句说明"这是设计方向样机 / 不是最终 App 或最终页面 / 选择后才进入正式实现"
 - [ ] 预览页包含至少 4 个真实 mini mockup，且差异覆盖布局、密度、色彩或字体中的多个轴，不只是换颜色
+- [ ] 四方向是 A/B/C/D 硬下限；未被三套文字方案、两种风格建议或推荐方向说明替代
 - [ ] 多方向已按 subagent 或独立 brief 隔离生成；若无法使用 subagent，已说明降级原因
 - [ ] 每个方向使用独立 stage 与 scoped CSS / 独立类名前缀，无全局样式污染其它方向
 - [ ] 桌面和移动端截图都已检查：页面无横向滚动，mini mockup 占满或居中，内部文字/控件没有互相挤压或遮挡
@@ -100,11 +103,19 @@
 
 ## C. 动效抽查（详表见 motion-craft.md）
 
-- [ ] 无 `transition: all`；无 `ease-in`；无 `scale(0)` 入场
+- [ ] 动效有明确目的和频率判断；高频/键盘触发操作没有动画
+- [ ] 无 `transition: all`；无 UI `ease-in`；无 `scale(0)` 或纯 fade 入场
 - [ ] UI 动效 ≤ 300ms；按压有 `:active` 反馈
+- [ ] popover/dropdown/tooltip 从触发源 origin 出现；modal 才保持 center
 - [ ] `prefers-reduced-motion` 兜底存在
 - [ ] hover 动效包在 `@media (hover: hover) and (pointer: fine)` 内
-- [ ] 只动了 transform/opacity
+- [ ] 只动了 transform/opacity；没有动画 `width/height/margin/padding/top/left`
+- [ ] 快速触发组件用 transition 或 spring，不用重播 keyframes
+- [ ] 手势/拖拽/sheet/swipe：pointer-down 即时反馈、1:1 跟手、pointer capture、velocity handoff、
+      rubber-band 边界、可中断；已读 `apple-fluid-interfaces.md`
+- [ ] Framer Motion / Motion 高负载场景没有用 `x/y/scale` shorthand 造成主线程掉帧风险
+- [ ] 动效不确定时已用慢放、逐帧或真实设备检查；专项审查按 `motion-review.md` 的
+      Before / After / Why 表格输出
 
 ## D. 工程抽查（详表见 engineering-checklist.md）
 

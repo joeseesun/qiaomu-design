@@ -62,7 +62,7 @@
 | 设计读取 + 三拨盘 | 按任务类型自适应冒险度/动效/密度：功能页收敛、开放命题放开 |
 | AI 反套路禁令 | 禁 AI 紫渐变、禁 Inter、禁斜体、禁居中套路、禁 AI 文案词——从源头消灭"AI 味" |
 | 中文排版规范 | 系统字体栈优先、装饰中文字体子集化、盘古之白、行高/字重/标点纪律 |
-| 动效工艺库 | Emil Kowalski 体系：缓动曲线、分场景时长、按压反馈、stagger、进出不对称 |
+| Emil 动效工艺套件 | `emil-design-eng` + `review-animations` + `animation-vocabulary` + `apple-design`：写动效、审动效、命名动效、做流体手势 |
 | 工程验收清单 | Vercel 规范：a11y、表单、焦点陷阱、危险操作防护，`file:line` 格式审查 |
 | 58 站设计系统库 | Stripe/Linear/Apple 等真实网站 DESIGN.md（Google Stitch 格式），可直接"参考 XX 做" |
 | 打磨模式 | 已有页面不推倒重来：Audit/Critique/Polish/Animate/Harden/Live 六动作 |
@@ -118,6 +118,9 @@ references/
   style-preview.md             风格试衣间规范（4 方向 + 手动确认回传）
   divergence-playbook.md       发散手册（轴级差异检验 + 14 种美学方向）
   motion-craft.md              动效工艺（Emil Kowalski 体系）
+  motion-review.md             动效专项审查（Before/After/Why + 阻断标准）
+  animation-vocabulary.md      动效术语词典（把模糊描述转成准确 motion brief）
+  apple-fluid-interfaces.md    Apple 流体交互（手势、弹簧、速度交接、透明材质）
   engineering-checklist.md     工程验收（Vercel WIG + 组件行为标准）
   chinese-typography.md        中文排版与配色（W3C clreq / Ant Design / Apple HIG）
   preflight.md                 交付前门禁
