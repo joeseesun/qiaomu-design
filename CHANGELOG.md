@@ -1,5 +1,17 @@
 # Changelog
 
+## v3.6 变更（2026-07-09）
+
+1. **同步 Emil Kowalski skills 四件套**：对齐 `emilkowalski/skills` upstream
+   `f76bece`，在原 `motion-craft.md` 基础上新增三份参考：
+   `motion-review.md`、`animation-vocabulary.md`、`apple-fluid-interfaces.md`。
+2. **动效审查变成硬门禁**：preflight C 节新增目的/频率判断、origin、可中断、
+   GPU 属性、Framer Motion shorthand、手势速度交接和慢放/逐帧检查；专项审查统一用
+   `Before / After / Why` 表格。
+3. **Apple 流体交互补丁**：补入 pointer-down 即时反馈、1:1 直接操控、presentation value、
+   velocity handoff、momentum projection、rubber-band 边界、透明材质和 reduced-transparency。
+4. **动效术语词典**：新增动效 vocabulary，用户描述"那个动效叫什么"时先命名，再写精确 brief。
+
 ## v3.5 变更（2026-07-06）
 
 1. **预览卡片说明防挤压**：方向卡片按钮上方的短说明必须使用 full-width 横排 meta block；

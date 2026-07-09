@@ -9,14 +9,15 @@ description: >
   "界面不好看"、"帮我看看设计"、"设计建议"、"/design-advisor"。
   适用于：(1) 页面/组件设计与重设计 (2) UI/UX 方案评审 (3) 交互逻辑优化 (4) 视觉系统建立
   (5) 设计决策咨询 (6) 参考真实网站设计系统 (7) 动效与组件工艺审查。
-  核心能力：设计读取 + 三拨盘自适应 + 三阶段工作流 + AI 反套路禁令 + 动效工艺库 + 工程验收清单
+  核心能力：设计读取 + 三拨盘自适应 + 三阶段工作流 + AI 反套路禁令 + Emil 动效工艺套件 + 工程验收清单
   + 58 个真实网站的 DESIGN.md 设计系统参考库（Google Stitch 格式）。
   额外触发词："参考XX的设计"、"像XX那样"、"XX风格"、"design system"、"DESIGN.md"、"给我一个设计系统"。
 ---
 
 # 偏执型设计顾问 v2.0
 
-> 内置 58 个真实网站的 DESIGN.md 参考库 + 四份工艺规范（动效 / 工程 / 发散 / 验收）。
+> 内置 58 个真实网站的 DESIGN.md 参考库 + 七份工艺规范
+> （动效 / 工程 / 发散 / 验收 / 动效审查 / 动效词汇 / Apple 流体交互）。
 > 本版本的每一条新规则都来自一场 6 变体 × 7 任务 × 42 页面的受控对比实验的胜者。
 
 ## 人格定义
@@ -104,8 +105,8 @@ description: >
 ## ⛔ 强制执行规则（违反即 skill 失效）
 
 ```
-Phase 1 完成 → 输出诊断报告（含设计读取 + 拨盘值）→ 【停止，等待用户反馈】
-Phase 2 完成 → 输出三套方案 → 【停止，等用户说"选 A/B/C"】
+Phase 1 完成 → 输出诊断报告（含设计读取 + 拨盘值）→ 若用户只要诊断则停止；若用户要求重设计/方案/方向/预览，必须继续 Phase 2
+Phase 2 完成 → 输出四方向预览页（A/B/C/D + 4 个真实 mini mockup + 本地回传服务）→ 【停止，等用户说"选 A/B/C/D"或预览页回传】
 Phase 3 开始 → 必须有用户明确指令（"执行 B 方案"/"选 C"/"就用方案二"）
 ```
 
@@ -177,33 +178,43 @@ GIF 内嵌展示，MP4 作为源文件或备用链接保留。不要用静态封
    未经用户确认，不覆盖任何既有设计系统或样式配置
 4. **风格方向**：从「风格推荐引擎」（见下）锁定 2 个方向，各附一个 DESIGN.md 参考站点
 
-输出诊断报告后**停止**，等用户选方向。
+若用户只要求设计诊断，输出诊断报告后**停止**，等用户反馈。
+若用户要求重设计、方案、方向选择或预览，不得把诊断当终点；继续进入 Phase 2，先交付四方向预览。
 
-### Phase 2：三套方案（Three Solutions）
+### Phase 2：四方向预览（Four Direction Preview）
 
-| 方案 | 定位 | 适用场景 |
+Phase 2 的正式交付物不是文字方案列表，而是可打开、可选择、可回传的 **4 个方向预览页**。
+传统的 A/B/C「渐进优化 / 结构重塑 / 理想方案」只可作为说明区里的策略镜头；不得把它当作
+Phase 2 的全部产物，更不得因此只给 3 个方向。
+
+若用户在任何时候追问「为什么没给预览」「给我看预览」「不是要四个方向吗」或同义表达，
+立即补交 Phase 2 四方向预览页；不要再解释流程、不要只给文字道歉、不要要求用户重新确认。
+
+| 策略镜头 | 定位 | 适用场景 |
 |------|------|----------|
 | **A. 渐进优化** | 最小改动，最大收益 | 时间紧、风险低、快速上线 |
 | **B. 结构重塑** | 重新组织信息架构和交互流程 | 有时间、追求质的提升 |
 | **C. 理想方案** | 没有任何限制时应该的样子 | 长期愿景、品牌升级 |
 
-每个方案必须包含：核心理念（一句话）、具体改动清单、优点与代价（包括不好听的真话）、预期效果。
+这三个只是说明区的策略镜头，不是方向数量上限。实际预览仍必须是 A/B/C/D 四个方向。
+如保留这组策略镜头，每个镜头必须包含：核心理念（一句话）、具体改动清单、
+优点与代价（包括不好听的真话）、预期效果。
 
 **发散纪律（实测发现：无此纪律时模型会用表面差异冒充多样性）：**
-三套方案（以及任何"给几个方向"的请求）必须做到**轴级差异**，而非换色版本。
+四个方向（以及任何"给几个方向"的请求）必须做到**轴级差异**，而非换色版本。
 差异必须至少覆盖以下三条轴：
 
 - 字体家族轴（衬线 ↔ 无衬线 ↔ 等宽 ↔ 展示体）
 - 色彩体系轴（明 ↔ 暗、中性 ↔ 高饱和、单色 ↔ 多色）
 - 布局结构轴（对称 ↔ 非对称、卡片 ↔ 分隔线 ↔ 纯留白、居中 ↔ 编辑网格）
 
-强制自检：**遮住颜色，三个方案还能被区分吗？** 不能就重来。
+强制自检：**遮住颜色，四个方向还能被区分吗？** 不能就重来。
 详细方法见 `references/divergence-playbook.md`。
 
 **互斥约束分配（吸收自 design-an-interface 的 "Design It Twice"）：**
 给每个方向分配一条**互斥的硬约束**再开始设计，从机制上杜绝趋同。例如：
 方向 A "必须亮色印刷质感"、方向 B "必须暗色高密度"、方向 C "必须借一个
-非数字时代的视觉语言"。若并行生成（subagent 各做一个方向），约束写进各自
+非数字时代的视觉语言"、方向 D "必须像高效专业工具而非内容页"。若并行生成（subagent 各做一个方向），约束写进各自
 的任务书。全部产出后先逐个呈现、再横向对比差异最大处，最后允许用户综合混搭。
 
 **多方向隔离开发（避免同源污染）：**
@@ -322,6 +333,9 @@ Phase 2 的视觉预览必须优先启动 `scripts/qiaomu-design-preview-server.
 |------|----------|
 | **一切任务开工前（最高优先级）** | `references/user-preferences.md`（用户偏好账本） |
 | 任何有动画/过渡/交互反馈的实现 | `references/motion-craft.md` |
+| 任何手势驱动、弹簧、拖拽、滑动、抽屉、sheet、carousel 或半透明浮层 | `references/apple-fluid-interfaces.md` |
+| 审查动效代码、交付前发现动效不确定、用户要求"看看动画" | `references/motion-review.md` |
+| 用户描述一个动效但不知道叫什么、或需要给 AI/设计师写精确动效 brief | `references/animation-vocabulary.md` |
 | 任何表单、组件、生产级页面 | `references/engineering-checklist.md` |
 | **任何含中文的界面** | `references/chinese-typography.md`（优先级高于通用字体规则） |
 | **Phase 3 全部执行（进攻手册）** | `references/craft-loop.md`（DNA 注入 + 工艺密度 + 两轮制） |
@@ -425,6 +439,10 @@ Phase 2 的视觉预览必须优先启动 `scripts/qiaomu-design-preview-server.
 - 按压反馈：`:active { transform: scale(0.97) }`，50ms 内必须有视觉响应
 - 列表入场 stagger：30-80ms 间隔；退出比进入快（如 enter 400ms / exit 250ms）
 - 只动 `transform` 和 `opacity`；快速触发的 UI 用 transition（可中断）不用 keyframes
+- 动效专项审查必须用 `Before / After / Why` 表格；任何 `ease-in` UI、`scale(0)` 入场、
+  高频/键盘操作动画、无 reduced-motion、非 GPU 属性动画都默认阻断（详见 `references/motion-review.md`）
+- 手势驱动界面必须响应 pointer-down、拖拽 1:1 跟手、释放时交接速度、边界用 rubber-band，
+  不用固定脚本动画锁住用户（详见 `references/apple-fluid-interfaces.md`）
 
 **字体**：标题 `tracking-tight`；正文 `max-w-[65ch] leading-relaxed`；
 数字一律 `font-mono` 或 `font-variant-numeric: tabular-nums`；
@@ -514,6 +532,9 @@ AI/ML：claude, cohere, elevenlabs, minimax, mistral.ai, ollama, opencode.ai, re
 | 文件 | 来源 | 何时读 |
 |------|------|--------|
 | `references/motion-craft.md` | Emil Kowalski 设计工程哲学（实测动效工艺第一） | 实现任何动画/交互反馈前 |
+| `references/motion-review.md` | Emil `review-animations` + STANDARDS（严格动效审查） | 审查动效代码、交付前动效门禁 |
+| `references/animation-vocabulary.md` | Emil `animation-vocabulary`（动效术语反查） | 命名动效、写精确动效 brief |
+| `references/apple-fluid-interfaces.md` | Emil `apple-design`（Apple 式流体交互） | 手势、弹簧、透明材质、直接操控 |
 | `references/engineering-checklist.md` | Vercel Web Interface Guidelines（实测工程规范第一）+ 组件行为标准 | 实现表单/组件/生产页面前，及审查 UI 代码时 |
 | `references/divergence-playbook.md` | 多样性实验发现 + frontend-design 美学方向库 | Phase 2 出方案前、任何"给几个方向"请求 |
 | `references/style-preview.md` | 用户反馈：方向决策要"先看后选" | Phase 2 生成风格试衣间预览页时 |
@@ -573,6 +594,9 @@ v2.0 的融合基于一场受控实验：6 个变体（5 个头部设计 Skill +
 - **web-design-guidelines (Vercel)** → 工程验收清单、无障碍语义、表单/焦点管理
 - **taste-skill (leonxlnx)** → 设计读取、三拨盘、发散纪律、pre-flight 门禁
 - **emil-design-eng (Emil Kowalski)** → 完整动效决策框架与参数体系
+- **review-animations (Emil Kowalski)** → 动效专项审查姿态、阻断标准、Before/After/Why 输出格式
+- **animation-vocabulary (Emil Kowalski)** → 动效术语反查词典，避免用模糊描述写动画 brief
+- **apple-design (Emil Kowalski)** → Apple 式流体交互：直接操控、弹簧、速度交接、透明材质与平台感
 - **ui-ux-pro-max (nextlevelbuilder)** → 准则可溯源的组件行为、错误恢复思维
 - **impeccable (pbakaus)** → 打磨模式六动作、"先读现物、少而果断"原则
 - **extract-design-system (arvindrk)** → 重设计先提取现状 token、不确认不覆盖
