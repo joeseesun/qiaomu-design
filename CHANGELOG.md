@@ -1,5 +1,13 @@
 # Changelog
 
+## v3.7 变更（2026-07-10）
+
+1. **系统研究 Carbon Design System**：以官方 sitemap 的 319 个 URL 为覆盖范围，对官方 `carbon-website` 快照 `1703364` 的 321 个 MDX 页面做分类索引，深读 foundations、components、patterns、data visualization、content、accessibility 与 AI 指南。
+2. **新增五份按需参考**：`carbon-foundations.md`、`carbon-components.md`、`carbon-patterns.md`、`carbon-data-visualization.md`、`carbon-source-map.md`，把 Carbon 的方法转化为中文、品牌中立的可执行规则。
+3. **组件七问 + 模式七段**：功能型 UI 在设计前必须回答何时用/不用、结构、内容、状态、输入方式、溢出与恢复；主工作流必须覆盖 entry / progress / result / exception / recovery / exit。
+4. **门禁扩展**：preflight 新增 Carbon 功能 UI 决策门和数据可视化门，强制检查 loading/empty/error、disabled/read-only/hidden、tooltip 边界、独立状态、URL 可恢复、图表诚实性和无障碍。
+5. **明确反品牌移植边界**：借用 Carbon 的决策结构，不将 IBM 蓝、Plex、Carbon 默认尺寸或组件 API 强加到乔木项目。
+
 ## v3.6 变更（2026-07-09）
 
 1. **同步 Emil Kowalski skills 四件套**：对齐 `emilkowalski/skills` upstream

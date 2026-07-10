@@ -45,6 +45,27 @@
 - [ ] 页面类型的核心标识首屏可辨（404 的错误码、定价的价格、表单的提交路径）
 - [ ] 创意元素没有遮蔽或稀释任何契约项
 
+## A4.1 Carbon 决策门（功能型 UI / 仪表盘 / 表单 / AI 工具必查）
+
+- [ ] 对关键组件已回答“何时用”和“为什么不用邻近组件”，没有只因为好看选型
+- [ ] 新增/重做的关键组件已定义 anatomy、content、states、keyboard、narrow viewport、overflow 和 recovery
+- [ ] 主工作流已覆盖 entry / progress / result / exception / recovery / exit，不是只画 happy path
+- [ ] loading 选择与任务匹配：结构预览=skeleton，未知等待=indicator，已知进度=progress，已有内容刷新不清空
+- [ ] empty / no results / unavailable / permission / error 已区分，每个状态有具体下一步
+- [ ] disabled / read-only / hidden 语义没有混淆，禁用原因和解锁路径可理解
+- [ ] tooltip 未承载完成任务必需信息；含交互的补充内容使用 toggletip/popover/dialog 并管理焦点
+- [ ] 展开/切换/tab/评分/预览等状态按实例独立管理，没有一个全局布尔值带动所有组件
+- [ ] 有分享、回退、重载价值的 tab / 筛选 / 搜索 / 分页状态已进入 URL
+- [ ] 项目品牌与现有组件库仍为主；没有因引用 Carbon 方法就复制 IBM 蓝、Plex 或 Carbon 默认外观
+
+## A4.2 数据可视化门（有图表时必查）
+
+- [ ] 每张图先写了用户问题，图表类型与比较/趋势/占比/相关/连接/空间任务匹配
+- [ ] 轴、基线、单位、时间范围、缺失值和数据来源明确，没有用截断轴夸大差异
+- [ ] 颜色是在编码类别/顺序/正负/状态，不是装饰；不看颜色仍能理解
+- [ ] 图例、tooltip、筛选和下钻支持键盘；关键数据有文本摘要与表格/导出等价形式
+- [ ] 已测试极值、负值、全 0、单点、缺失、长标签、多系列、无数据和窄屏
+
 ## A5. 方案预览交付门（Phase 2 必查）
 
 - [ ] 如果用户要求设计方案、重构方案、多个方向或风格建议，已生成可打开的浅层预览目录 `design-previews/YYYY-MM-DD-任务名/index.html`

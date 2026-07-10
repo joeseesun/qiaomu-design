@@ -64,6 +64,7 @@
 | 中文排版规范 | 系统字体栈优先、装饰中文字体子集化、盘古之白、行高/字重/标点纪律 |
 | Emil 动效工艺套件 | `emil-design-eng` + `review-animations` + `animation-vocabulary` + `apple-design`：写动效、审动效、命名动效、做流体手势 |
 | 工程验收清单 | Vercel 规范：a11y、表单、焦点陷阱、危险操作防护，`file:line` 格式审查 |
+| Carbon 决策体系 | 基于官方 319 页索引，整合基础 token、组件选型、完整工作流、数据可视化与无障碍；借方法，不复制 IBM 外观 |
 | 58 站设计系统库 | Stripe/Linear/Apple 等真实网站 DESIGN.md（Google Stitch 格式），可直接"参考 XX 做" |
 | 打磨模式 | 已有页面不推倒重来：Audit/Critique/Polish/Animate/Harden/Live 六动作 |
 | 交付门禁 | preflight 强制检查清单，任何一条不过就不交付 |
@@ -122,6 +123,11 @@ references/
   animation-vocabulary.md      动效术语词典（把模糊描述转成准确 motion brief）
   apple-fluid-interfaces.md    Apple 流体交互（手势、弹簧、速度交接、透明材质）
   engineering-checklist.md     工程验收（Vercel WIG + 组件行为标准）
+  carbon-foundations.md        Carbon 网格/token/排版/动效/内容/a11y/AI
+  carbon-components.md         Carbon 组件选型矩阵 + 七问 dossier
+  carbon-patterns.md           Carbon 表单/对话/状态/CRUD 完整工作流
+  carbon-data-visualization.md Carbon 图表选型/轴/颜色/图例/仪表盘
+  carbon-source-map.md         319 页 sitemap + 321 MDX 覆盖与刷新方法
   chinese-typography.md        中文排版与配色（W3C clreq / Ant Design / Apple HIG）
   preflight.md                 交付前门禁
   design-systems/{58 站}/      DESIGN.md 设计系统参考库
@@ -146,7 +152,7 @@ references/
 
 ## 来源与致谢
 
-MIT License。融合机制来源（详见 SKILL.md 血统说明）：[anthropics/skills](https://github.com/anthropics/skills) · [vercel-labs/web-interface-guidelines](https://github.com/vercel-labs/web-interface-guidelines) · [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) · [emilkowalski/skills](https://github.com/emilkowalski/skills) · [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) · [pbakaus/impeccable](https://github.com/pbakaus/impeccable) · [arvindrk/extract-design-system](https://github.com/arvindrk/extract-design-system) · [mattpocock/skills](https://github.com/mattpocock/skills) · DESIGN.md 库基于 [VoltAgent/awesome-design-md](https://github.com/VoltAgent/awesome-design-md)（Google Stitch 格式）
+MIT License。融合机制来源（详见 SKILL.md 血统说明）：[anthropics/skills](https://github.com/anthropics/skills) · [vercel-labs/web-interface-guidelines](https://github.com/vercel-labs/web-interface-guidelines) · [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) · [emilkowalski/skills](https://github.com/emilkowalski/skills) · [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) · [pbakaus/impeccable](https://github.com/pbakaus/impeccable) · [arvindrk/extract-design-system](https://github.com/arvindrk/extract-design-system) · [mattpocock/skills](https://github.com/mattpocock/skills) · [IBM Carbon Design System](https://carbondesignsystem.com/)（官方站点与 Apache-2.0 `carbon-website` 文档的重写摘要） · DESIGN.md 库基于 [VoltAgent/awesome-design-md](https://github.com/VoltAgent/awesome-design-md)（Google Stitch 格式）
 
 ## 版权
 

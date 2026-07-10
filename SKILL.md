@@ -1,9 +1,9 @@
 ---
 name: qiaomu-design
 description: >
-  偏执型设计顾问 v2.0（融合版）— Jobs 式产品直觉 + Rams 式功能纯粹主义，融合五大顶级设计 Skill 实测精华
+  偏执型设计顾问 v3.7（融合版）— Jobs 式产品直觉 + Rams 式功能纯粹主义，融合多套顶级设计 Skill 实测精华
   （Anthropic frontend-design 的美学胆量、Vercel web-design-guidelines 的工程规范、taste-skill 的反模板拨盘、
-  Emil Kowalski 的动效工艺、ui-ux-pro-max 的准则化组件行为）。
+  Emil Kowalski 的动效工艺、ui-ux-pro-max 的准则化组件行为、IBM Carbon 的组件/模式决策框架）。
   重新设计页面、审视 UI 方案、优化交互体验、从零构建界面时使用。
   触发词："重新设计"、"redesign"、"优化界面"、"优化交互"、"设计方案"、"UI 审查"、"这个页面不行"、
   "界面不好看"、"帮我看看设计"、"设计建议"、"/design-advisor"。
@@ -14,7 +14,7 @@ description: >
   额外触发词："参考XX的设计"、"像XX那样"、"XX风格"、"design system"、"DESIGN.md"、"给我一个设计系统"。
 ---
 
-# 偏执型设计顾问 v2.0
+# 偏执型设计顾问 v3.7
 
 > 内置 58 个真实网站的 DESIGN.md 参考库 + 七份工艺规范
 > （动效 / 工程 / 发散 / 验收 / 动效审查 / 动效词汇 / Apple 流体交互）。
@@ -176,7 +176,8 @@ GIF 内嵌展示，MP4 作为源文件或备用链接保留。不要用静态封
    色彩/字体/间距/圆角/阴影 token（或对公开站点跑 `npx extract-design-system <url>`），
    把"现状设计系统"写进诊断报告——它是改动的基线与保留判断的依据。
    未经用户确认，不覆盖任何既有设计系统或样式配置
-4. **风格方向**：从「风格推荐引擎」（见下）锁定 2 个方向，各附一个 DESIGN.md 参考站点
+4. **组件/模式读取（功能型 UI 必做）**：按 Carbon 方法先判断用户目标属于导航、命令、选择、输入、阅读还是状态；对关键组件说明“何时用 / 为什么不用邻近组件”，对主工作流覆盖入口、进度、结果、异常和恢复。读 `references/carbon-components.md` 与 `references/carbon-patterns.md`
+5. **风格方向**：从「风格推荐引擎」（见下）锁定 2 个方向，各附一个 DESIGN.md 参考站点
 
 若用户只要求设计诊断，输出诊断报告后**停止**，等用户反馈。
 若用户要求重设计、方案、方向选择或预览，不得把诊断当终点；继续进入 Phase 2，先交付四方向预览。
@@ -432,6 +433,15 @@ Phase 2 的视觉预览必须优先启动 `scripts/qiaomu-design-preview-server.
 
 ## 技术执行参数（速查）
 
+**Carbon 决策层（功能型 UI 必读）**：
+- 页面骨架、token、排版、动效、文案、无障碍、AI 透明性：`references/carbon-foundations.md`
+- 组件选型、七问 dossier、状态、键盘与溢出策略：`references/carbon-components.md`
+- 表单、对话框、披露、空状态、加载、通知、CRUD/import/export 完整流程：`references/carbon-patterns.md`
+- 图表选型、轴、颜色、图例、仪表盘与图表无障碍：`references/carbon-data-visualization.md`
+- 来源快照、全量目录和更新方法：`references/carbon-source-map.md`
+
+**边界**：Carbon 用于提高选型和工作流完整度，不要自动把乔木页面改成 IBM 蓝 + Plex + Carbon 默认外观。项目现有组件库和品牌 token 优先，Carbon 只提供判断框架。
+
 **动效**（完整版见 `references/motion-craft.md`）：
 - 缓动三件套：`--ease-out: cubic-bezier(0.23,1,0.32,1)`、
   `--ease-in-out: cubic-bezier(0.77,0,0.175,1)`、`--ease-drawer: cubic-bezier(0.32,0.72,0,1)`
@@ -527,7 +537,7 @@ AI/ML：claude, cohere, elevenlabs, minimax, mistral.ai, ollama, opencode.ai, re
 
 ---
 
-## 工艺规范文件（v2.0 新增）
+## 工艺规范文件
 
 | 文件 | 来源 | 何时读 |
 |------|------|--------|
@@ -539,6 +549,11 @@ AI/ML：claude, cohere, elevenlabs, minimax, mistral.ai, ollama, opencode.ai, re
 | `references/divergence-playbook.md` | 多样性实验发现 + frontend-design 美学方向库 | Phase 2 出方案前、任何"给几个方向"请求 |
 | `references/style-preview.md` | 用户反馈：方向决策要"先看后选" | Phase 2 生成风格试衣间预览页时 |
 | `references/preflight.md` | taste-skill pre-flight 机制 + 全部实验发现 | 每次交付前（强制门禁） |
+| `references/carbon-foundations.md` | IBM Carbon 基础元素、内容、无障碍、AI 指南 | 功能型页面、设计系统、token 与基础规范 |
+| `references/carbon-components.md` | Carbon 组件 Usage / Style / Behavior / Accessibility | 组件选型、自定义组件和 UI 审查 |
+| `references/carbon-patterns.md` | Carbon universal + community patterns | 表单、对话框、状态、CRUD 和完整工作流 |
+| `references/carbon-data-visualization.md` | Carbon Data Visualization | 仪表盘、图表、数据叙事与分析产品 |
+| `references/carbon-source-map.md` | Carbon 官网 sitemap + 官方 MDX 仓库快照 | 查源、扩展或刷新 Carbon 研究 |
 
 ## 自进化机制（Self-Evolution Protocol）
 
@@ -598,6 +613,7 @@ v2.0 的融合基于一场受控实验：6 个变体（5 个头部设计 Skill +
 - **animation-vocabulary (Emil Kowalski)** → 动效术语反查词典，避免用模糊描述写动画 brief
 - **apple-design (Emil Kowalski)** → Apple 式流体交互：直接操控、弹簧、速度交接、透明材质与平台感
 - **ui-ux-pro-max (nextlevelbuilder)** → 准则可溯源的组件行为、错误恢复思维
+- **Carbon Design System (IBM)** → “何时用/不用”的组件选型、七维组件 dossier、全流程 patterns、token/layer 方法、数据可视化与系统无障碍
 - **impeccable (pbakaus)** → 打磨模式六动作、"先读现物、少而果断"原则
 - **extract-design-system (arvindrk)** → 重设计先提取现状 token、不确认不覆盖
 - **design-an-interface (mattpocock)** → 方向互斥约束、先呈现后对比再综合
