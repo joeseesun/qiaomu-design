@@ -1,0 +1,6 @@
+{"id":"dec-1e03adcf18","timestamp":"2026-08-22T16:59:12.744Z","type":"decision","source":"cli","candidateId":"cand-ed823089a9","status":"accepted","reason":"用户在当前任务中明确要求修改规范"}
+{"id":"dec-b05131483a","timestamp":"2026-08-22T16:59:18.331Z","type":"decision","source":"cli","candidateId":"cand-ed823089a9","status":"published","target":"references/user-preferences.md"}
+{"id":"dec-82647608bd","timestamp":"2026-09-04T01:23:17.164Z","type":"decision","source":"cli","candidateId":"cand-2d2b11fe0c","status":"accepted","reason":"用户已在 2026-09-01 明确纠正为 explicit-only，本次技能优化同步发布"}
+{"id":"dec-2607d3a2e2","timestamp":"2026-09-04T01:23:26.826Z","type":"decision","source":"cli","candidateId":"cand-2d2b11fe0c","status":"published","target":"references/user-preferences.md"}
+{"id":"dec-c4a172f4e2","timestamp":"2026-09-04T01:23:55.582Z","type":"decision","source":"cli","candidateId":"cand-6be0b7700f","status":"accepted","reason":"用户本次明确要求将文章提示词技巧用于优化 qiaomu-design"}
+{"id":"dec-f60fb6f1f6","timestamp":"2026-09-04T01:24:01.587Z","type":"decision","source":"cli","candidateId":"cand-6be0b7700f","status":"published","target":"references/user-preferences.md"}

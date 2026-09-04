@@ -2,19 +2,19 @@
 
 **中文** | [English](#english)
 
-> 让 AI 做出"不像 AI 做的"设计：Jobs 式产品直觉 + Rams 式功能纯粹主义，融合五大顶级设计 Skill 的实测精华。
+> 让 AI 做出“不像默认 AI 模板”的设计：先看四个真实方向，再把选定界面实现并验收到可交付。
 >
-> An opinionated design advisor skill for Claude Code: anti-generic aesthetics, engineering-grade delivery, and a visual "style fitting room" — distilled from a controlled experiment across 5 top design skills.
+> An opinionated Agent Skill for visual direction, implementation, and browser-based UI verification.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE) [![Skill](https://img.shields.io/badge/Claude%20Code-Agent%20Skill-blue)](https://docs.anthropic.com/claude/docs/claude-code) [更新日志](CHANGELOG.md)
+[![Release](https://img.shields.io/github/v/release/joeseesun/qiaomu-design?style=flat-square)](https://github.com/joeseesun/qiaomu-design/releases) [![Last commit](https://img.shields.io/github/last-commit/joeseesun/qiaomu-design?style=flat-square)](https://github.com/joeseesun/qiaomu-design/commits/main) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE) [更新日志](CHANGELOG.md)
 
-**已验证：** 本 skill 的每条核心规则均来自多轮主流设计 Skill 横评实验，并经浏览器实测交互验证。
+**证据边界：** 核心机制来自受控横评与真实项目迭代；仓库案例可复查，但具体项目仍需逐次运行测试、桌面/移动端截图和交互验收。
 
 **完整横评：** [前端设计 Skill 横评实验室](https://designskill.qiaomu.ai/) 展示 8 个主流变体 × 10 个任务的 80 个真实生成页面，qiaomu-design 与 impeccable 均已补齐全部任务。
 
-## 模型建议
+## 执行者与模型
 
-强烈建议用 **GLM5.2 / GLM 5.2** 或 **Claude** 模型执行本 skill。近期实测里，Codex 中的 GPT 模型做设计生成效果很不理想：容易保守、空洞、模板化，难以稳定产出有气质的完整页面。追求高质量视觉时，优先切到 GLM5.2 或 Claude。
+默认由当前执行代理直接完成，不因触发 skill 自动切换 K3 或其他外部模型。只有用户在当前任务明确点名 K3 时才调用；质量来自“发散 → 定义 → 选择 → 独立评审 → 删减 → 真实验收”的闭环，不来自模型名本身。
 
 ## 案例
 
@@ -48,16 +48,18 @@
 
 ## 这是什么
 
-一个 Claude Code Agent Skill。安装后，当你说"帮我设计 / 重新设计 / 优化界面"时，它会接管设计流程：先诊断真实需求，再用**可视化风格试衣间**给你 4 个方向实际看着选，确认后按工程验收标准交付——而不是直接吐一个紫渐变居中 Hero 的"AI 味"页面。
+一个把设计发散、方向选择、实现和视觉验收串成闭环的 Agent Skill。安装后，当你说"帮我设计 / 重新设计 / 优化界面"时，它会先诊断真实需求，再用**可视化风格试衣间**给你 4 个方向实际看着选，确认后由当前 Codex 修改真实文件并按工程验收标准交付——而不是直接吐一个紫渐变居中 Hero 的"AI 味"页面。
 
 ## 为什么值得用
 
-大多数 AI 设计的问题不是画不好，而是：默认审美收敛（Inter + 紫渐变 + 三等分卡片）、方向靠文字描述拍脑袋选、交付物过不了工程验收、中文排版直接套英文规则。本 skill 针对这四个问题各给了一套实测过的机制。
+大多数 AI 设计的问题不是画不好，而是：默认审美收敛、方向只有形容词、实现者自评产生偏差、不断做加法，以及最终过不了工程和中文排版验收。本 skill 为这些问题提供可执行、可检查的闭环。
 
 ## 核心能力
 
 | 能力 | 你得到什么 |
 |---|---|
+| 执行者显式路由 | 默认当前 Codex 直接实现；只有用户在当前任务点名 K3 才调用，并保留隔离、diff 审查和独立验收 |
+| 创意提示词编排 | 用独立创意种子、雄心命题、用户反应 brief、新上下文截图批评和删减通道，把 Discover → Define → Deliver 变成可执行流程 |
 | 风格试衣间 | 4 个互斥方向的真实迷你 mockup，生成在 `design-previews/YYYY-MM-DD-任务名/index.html`，点选/键盘进入确认弹层，带拨盘与建议一起回传 |
 | 设计读取 + 三拨盘 | 按任务类型自适应冒险度/动效/密度：功能页收敛、开放命题放开 |
 | AI 反套路禁令 | 禁 AI 紫渐变、禁 Inter、禁斜体、禁居中套路、禁 AI 文案词——从源头消灭"AI 味" |
@@ -76,7 +78,7 @@
 npx skills add joeseesun/qiaomu-design
 ```
 
-然后在 Claude Code 里直接说：
+然后在支持 Agent Skills 的客户端里直接说：
 
 ```
 帮我设计一个产品落地页
@@ -90,9 +92,32 @@ git clone https://github.com/joeseesun/qiaomu-design.git
 cp -r qiaomu-design ~/.claude/skills/qiaomu-design
 ```
 
-前置条件：已安装 [Claude Code](https://docs.anthropic.com/claude/docs/claude-code)。
+手动复制路径因客户端而异；优先使用上方 `npx skills add`。
 
 </details>
+
+## 前置条件与验证
+
+- [ ] Node.js 与 `npx`：运行 `node --version && npx --version`
+- [ ] 支持 Agent Skills 的客户端（例如 Codex 或 Claude Code）
+- [ ] 若要交互式方向回传：本机可运行 `node --check scripts/qiaomu-design-preview-server.mjs`
+- [ ] 若用户明确要求 K3：另行安装并验证 `qiaomu-model-cli`；默认不需要
+
+安装后验证发现与目录：
+
+```bash
+npx skills add joeseesun/qiaomu-design --list
+test -f ~/.agents/skills/qiaomu-design/SKILL.md
+python3 /path/to/qiaomu-meta-skill/scripts/validate_skill.py ~/.agents/skills/qiaomu-design
+```
+
+## 你可以直接这样说
+
+- “帮我重新设计这个产品首页，先给四个能直接看的方向。”
+- “打磨这个已经能用的页面，去掉 AI 味但别推倒重来。”
+- “审查这个仪表盘的信息层级、状态和移动端问题，先不要改。”
+- “参考 Linear 的克制感，给我的开发者工具做一套设计系统。”
+- “用 K3 实现我选中的 B 方向，并由当前代理独立验收。”（只有这类明确点名才调用 K3）
 
 ## 使用方式
 
@@ -118,6 +143,7 @@ references/
   user-preferences.md          用户偏好账本（自进化写入，最高优先级）
   style-preview.md             风格试衣间规范（4 方向 + 手动确认回传）
   divergence-playbook.md       发散手册（轴级差异检验 + 14 种美学方向）
+  creative-prompting.md        创意提示词编排（种子 / brief / 独立批评 / 媒体 / 删减）
   motion-craft.md              动效工艺（Emil Kowalski 体系）
   motion-review.md             动效专项审查（Before/After/Why + 阻断标准）
   animation-vocabulary.md      动效术语词典（把模糊描述转成准确 motion brief）
@@ -137,11 +163,19 @@ references/
 
 规则不是拍脑袋写的。改造前先做了一场受控实验：6 个变体（anthropics/frontend-design、vercel/web-design-guidelines、ui-ux-pro-max、taste-skill、emil-design-eng、无 Skill 对照组）× 7 个任务（落地页/仪表盘/作品集/交互向导/组件面板/创意 404/多样性挑战）= 42 个页面，横评视觉个性、工程规范、动效工艺、交互完成度、组件合理性、创造性、多样性七个维度。
 
-后续复测扩展为 [8 个变体 × 10 个任务的公开横评](https://designskill.qiaomu.ai/)，覆盖电商详情、移动端与数据叙事等新场景。每个维度胜者的核心机制被移植进本 skill，来源在 SKILL.md「血统说明」逐条可查。
+后续复测扩展为 [8 个变体 × 10 个任务的公开横评](https://designskill.qiaomu.ai/)，覆盖电商详情、移动端与数据叙事等新场景。采用的机制与来源记录在对应 `references/` 及下方致谢中。
+
+这些结果证明的是案例与机制可复查，不等于所有未来输出自动达到同一质量；每个新项目仍要通过自己的功能、构建、浏览器和人工判断。
+
+## 配置与权限边界
+
+本 skill 没有必需环境变量。交互预览只在本机回环地址启动临时服务，并会在项目内写入
+`design-previews/`；正式实现会修改用户明确放入范围的项目文件。外部参考、媒体生成、付费服务、
+K3 或其他模型调用都需要当前任务的明确需求或授权。API key 只放本地受保护环境，不写入提示词、仓库或日志。
 
 ## 限制与边界
 
-- 这是 Claude Code 的 Agent Skill，不是独立软件；效果依赖模型能力
+- 这是面向 Agent-Skills-compatible 客户端的 Skill，不是独立软件；效果依赖执行代理、项目上下文与验收质量
 - 风格试衣间默认生成浅层任务目录：`design-previews/YYYY-MM-DD-任务名/index.html`；
   当前不在项目中时退到桌面目录；用户可以指定输出目录
 - 点选回传依赖本地预览服务；服务失败时降级为打开 HTML 文件并在对话中回复选择
@@ -150,11 +184,41 @@ references/
 - 58 站 DESIGN.md 库来自公开网站的设计系统提炼，用于风格参考，不代表对应公司背书
 - 装饰性中文字体默认禁用（体积 5-20MB），只在创意标题场景子集化加载——这是特性不是缺陷
 
+## Troubleshooting
+
+| 问题 | 常见原因 | 解决 |
+|---|---|---|
+| `No valid skills found` | `SKILL.md` 未安装到客户端扫描路径或 frontmatter 损坏 | 先运行 `npx skills add ... --list`，再确认安装目录里存在根级 `SKILL.md` |
+| 预览页能打开但选择没有回传 | 用 `file://` 打开，或本地服务已退出 | 用 `qiaomu-design-preview-server.mjs --file <index.html> --exit-on-select` 重启；静态模式则回到对话回复 A/B/C/D |
+| 页面出现重复“选择方向”按钮 | 旧预览 HTML 与服务注入协议冲突 | 更新到最新版，确认每个方向只有一个 `.qmdp-pick-button`，删除旧 `selection.json` 后重开 |
+| 中文字体加载慢或排版跳动 | 引入了完整 CJK Webfont | 正文改用系统中文字体栈；装饰标题只请求实际字符子集 |
+| 触发后意外调用外部模型 | 旧版偏好或本地规则仍要求 K3 | 更新到 v3.9.0；默认当前代理执行，只有当前任务明确点名 K3 才调用 |
+
 ## 来源与致谢
 
 MIT License。融合机制来源（详见 SKILL.md 血统说明）：[anthropics/skills](https://github.com/anthropics/skills) · [vercel-labs/web-interface-guidelines](https://github.com/vercel-labs/web-interface-guidelines) · [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) · [emilkowalski/skills](https://github.com/emilkowalski/skills) · [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) · [pbakaus/impeccable](https://github.com/pbakaus/impeccable) · [arvindrk/extract-design-system](https://github.com/arvindrk/extract-design-system) · [mattpocock/skills](https://github.com/mattpocock/skills) · [IBM Carbon Design System](https://carbondesignsystem.com/)（官方站点与 Apache-2.0 `carbon-website` 文档的重写摘要） · DESIGN.md 库基于 [VoltAgent/awesome-design-md](https://github.com/VoltAgent/awesome-design-md)（Google Stitch 格式）
 
-## 版权
+<!-- qiaomu-profile:start -->
+## 关于向阳乔木
+
+向阳乔木（乔向阳 / Joe）是一位实践型 AI 产品与内容创作者，长期把前沿 AI 变化转译成可复用的工作流、产品判断、AI 编程实践、AI 搜索实践和 GEO/AI 营销方法。
+
+- 个人网站: https://qiaomu.ai
+- 博客: https://blog.qiaomu.ai
+- X: https://x.com/vista8
+- GitHub: https://github.com/joeseesun/
+- 微信公众号: 向阳乔木推荐看
+
+### 支持与关注
+
+| 打赏支持 | 微信公众号 |
+|---|---|
+| <img src="assets/qiaomu-profile/qiaomu_reward_qr.png" alt="向阳乔木打赏二维码" width="180" /> | <img src="assets/qiaomu-profile/qiaomu_wechat_public_account_qr.jpg" alt="向阳乔木推荐看公众号二维码" width="180" /> |
+| 感谢支持乔木持续分享 AI 实践 | 扫码关注「向阳乔木推荐看」 |
+
+<!-- qiaomu-profile:end -->
+
+## License / 版权
 
 MIT License。Copyright (c) 向阳乔木。
 
@@ -166,7 +230,7 @@ MIT License。Copyright (c) 向阳乔木。
 
 # English
 
-**qiaomu-design** is a Claude Code Agent Skill that makes AI-generated interfaces stop looking AI-generated. It fuses the experimentally-validated strengths of five top design skills (Anthropic frontend-design, Vercel web-interface-guidelines, taste-skill, Emil Kowalski's design engineering, ui-ux-pro-max) into one opinionated design advisor.
+**qiaomu-design** is an Agent Skill that helps AI-generated interfaces avoid default template aesthetics. It combines visual direction, implementation, and browser-based verification in one opinionated workflow.
 
 ## Install
 
@@ -174,11 +238,11 @@ MIT License。Copyright (c) 向阳乔木。
 npx skills add joeseesun/qiaomu-design
 ```
 
-Then just ask Claude Code: `redesign my landing page`.
+Then ask your Agent-Skills-compatible client: `redesign my landing page and show four visual directions first`.
 
 ## What you get
 
-- **Recommended models**: use GLM 5.2 or Claude for this skill. In recent runs, GPT models inside Codex produced poor design results: too conservative, sparse, and template-like for high-quality visual work.
+- **Explicit executor routing**: the current agent implements by default. K3 or any other external model is used only when the user explicitly requests it in the current task.
 - **Style fitting room**: 4 mutually-divergent direction mockups (real fonts/colors/layout) in `design-previews/YYYY-MM-DD-task/index.html`. Pick by click or keys, confirm with dial values and optional notes, then the local preview server reports the selection back to the current workflow.
 - **Design read + three dials**: VARIANCE / MOTION / DENSITY auto-tuned per task type — restrained on functional UI, bold on open creative briefs.
 - **Anti-slop bans**: no AI-purple gradients, no Inter, no italics, no centered-hero clichés, no "revolutionary/seamless" copy.
@@ -187,14 +251,14 @@ Then just ask Claude Code: `redesign my landing page`.
 - **58 real-site DESIGN.md library** (Stripe, Linear, Apple…, Google Stitch format) for "make it like X" requests.
 - **Polish mode** for existing pages (Audit/Critique/Polish/Animate/Harden/Live) — no rewrites from scratch.
 - **Pre-flight gate**: a hard checklist; nothing ships if any item fails.
-- **Self-evolution**: your feedback gets abstracted into a preferences ledger the skill reads before every task.
+- **Self-evolution**: feedback is recorded as events, abstracted into evidence-backed candidate rules, explicitly approved, published to the preferences ledger, and verified or rolled back when it causes regressions.
 
 ## Verified
 
-Every core rule traces back to controlled design-skill comparisons. The first run covered 6 variants × 7 tasks × 42 generated pages; the public follow-up expands to [8 variants × 10 tasks × 80 generated pages](https://designskill.qiaomu.ai/). The qiaomu-design screenshots above link to the live interactive case pages. The meditation website case is embedded as an animated GIF above, with the source MP4 kept at [`docs/assets/cases/qiaomu-design-meditation-site.mp4`](docs/assets/cases/qiaomu-design-meditation-site.mp4). Provenance is documented per-module in SKILL.md.
+The first controlled comparison covered 6 variants × 7 tasks × 42 generated pages; the public follow-up expands to [8 variants × 10 tasks × 80 generated pages](https://designskill.qiaomu.ai/). The screenshots above link to interactive case pages. This evidence applies to those cases and mechanisms; every future project still needs its own tests and visual verification.
 
 ## Limits
 
-Requires Claude Code. The fitting room is a local HTML preview served by a tiny local callback server; if the server cannot start, it falls back to opening the HTML file and asking the user to reply with the selected direction. qiaomu-design does not inject Qiaomu profile widgets into generated pages by default. The DESIGN.md library is distilled from public sites for reference, not endorsement.
+Requires an Agent-Skills-compatible client. The fitting room is a local HTML preview served by a tiny local callback server; if the server cannot start, it falls back to a static file and asks the user to reply with the selected direction. qiaomu-design does not inject Qiaomu profile widgets into generated pages by default. The DESIGN.md library is distilled from public sites for reference, not endorsement.
 
 MIT © 向阳乔木 · [qiaomu.ai](https://qiaomu.ai/) · [@joeseesun](https://github.com/joeseesun)

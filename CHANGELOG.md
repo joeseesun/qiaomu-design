@@ -1,5 +1,18 @@
 # Changelog
 
+## v3.9.0 · 创意提示词编排与生产发布（2026-09-04）
+
+1. 新增 `references/evolution-protocol.md`，把自进化定义为 `observed → proposed → accepted → published → retired` 状态机，明确证据、冲突、发布和回滚规则。
+2. 新增 `scripts/qiaomu-design-evolution.mjs`：支持事件记录、候选规则、显式批准、账本发布、状态报告和一致性校验；自动化不再直接修改长期偏好。
+3. `preflight.md` 新增 A0 自进化证据门，要求每次规则变更都有事件、证据、同步门禁和回归检查。
+4. 新增 `references/creative-prompting.md`：把公开可核验的 Discover / Define / Deliver 技巧编译为创意种子、雄心命题、用户反应 brief、独立截图批评、媒体资产和删减通道。
+5. 开放式四方向各用独立创意种子与互斥硬约束；严格复刻、修 bug、事实任务和单一正确答案不使用创意种子。
+6. 新增创意编排 preflight：brief 完整性、截图批评新上下文、两轮停止条件、媒体降级与最终删减均可检查。
+7. 执行者路由对齐最新用户偏好：默认当前 Codex 直接完成，只有用户在当前任务明确点名 K3 才调用；旧 P-40 / P-45 保留并标记为已废止。
+8. 将根 `SKILL.md` 从 47.5 KB 压缩到 14 KB 生产预算以内，改为按任务路由到专门参考，保留三阶段、四方向、功能契约和真实验收核心行为。
+9. 补齐 `manifest.json`、`agents/interface.yaml`、trigger eval 与 Skill IR，使公开包具备可检查的版本、权限、触发边界和安装门禁。
+10. README 改为证据约束的产品页：明确默认执行者、安装验证、权限边界、Troubleshooting，并移除未经验证的模型优劣判断。
+
 ## v3.7 变更（2026-07-10）
 
 1. **系统研究 Carbon Design System**：以官方 sitemap 的 319 个 URL 为覆盖范围，对官方 `carbon-website` 快照 `1703364` 的 321 个 MDX 页面做分类索引，深读 foundations、components、patterns、data visualization、content、accessibility 与 AI 指南。

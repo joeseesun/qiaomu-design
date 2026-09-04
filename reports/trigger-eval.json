@@ -1,0 +1,207 @@
+{
+  "ok": true,
+  "threshold": 0.34,
+  "description_concepts": [
+    "artifact",
+    "design",
+    "interface_action",
+    "preview"
+  ],
+  "missing_description_concepts": [],
+  "summary": {
+    "total": 14,
+    "passed": 14,
+    "false_positive": 0,
+    "false_negative": 0,
+    "pass_rate": 1.0
+  },
+  "failures": [],
+  "results": {
+    "should_trigger": [
+      {
+        "prompt": "帮我重新设计这个产品首页，先给四个能直接看的方向",
+        "family": "cn_redesign_preview",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 0.5,
+        "matched_concepts": [
+          "design",
+          "preview"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "把这个 SaaS 落地页改版，做出更鲜明的视觉方案",
+        "family": "cn_landing_redesign",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 0.75,
+        "matched_concepts": [
+          "artifact",
+          "design",
+          "interface_action"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "审查这个仪表盘的 UI 层级、组件状态和移动端体验",
+        "family": "cn_dashboard_audit",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 0.75,
+        "matched_concepts": [
+          "artifact",
+          "design",
+          "interface_action"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "打磨这个已有页面，去掉 AI 味但不要推倒重来",
+        "family": "cn_polish_existing",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 0.5,
+        "matched_concepts": [
+          "artifact",
+          "interface_action"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "参考 Linear 的风格，为开发者工具建立一套设计系统",
+        "family": "cn_design_system",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 0.75,
+        "matched_concepts": [
+          "artifact",
+          "design",
+          "preview"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "Redesign this dashboard UI and show me four distinct visual directions before implementation.",
+        "family": "en_dashboard_preview",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 0.75,
+        "matched_concepts": [
+          "artifact",
+          "design",
+          "interface_action"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "Polish this existing component and audit its UX states and responsive behavior.",
+        "family": "en_component_polish",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 0.75,
+        "matched_concepts": [
+          "artifact",
+          "design",
+          "interface_action"
+        ],
+        "negative_pattern": null
+      }
+    ],
+    "should_not_trigger": [
+      {
+        "prompt": "给这个 API 增加一个缓存层，只改业务逻辑，不要改界面",
+        "family": "backend_only",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.25,
+        "matched_concepts": [
+          "design"
+        ],
+        "negative_pattern": "不要改界面"
+      },
+      {
+        "prompt": "只润色文案，把这段产品介绍写得更自然",
+        "family": "copy_only",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.0,
+        "matched_concepts": [],
+        "negative_pattern": "只润色文案"
+      },
+      {
+        "prompt": "翻译这份设计系统文档，只翻译，不要做设计",
+        "family": "translation_only",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.5,
+        "matched_concepts": [
+          "artifact",
+          "design"
+        ],
+        "negative_pattern": "只翻译"
+      },
+      {
+        "prompt": "Fix the database migration; business logic only, not the interface.",
+        "family": "database_only",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.0,
+        "matched_concepts": [],
+        "negative_pattern": "not the interface"
+      }
+    ],
+    "near_neighbor": [
+      {
+        "prompt": "解释一下什么是 design system，先不要修改任何文件",
+        "family": "explain_only",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.5,
+        "matched_concepts": [
+          "artifact",
+          "design"
+        ],
+        "negative_pattern": "先不要修改"
+      },
+      {
+        "prompt": "帮我给已有页面写一段发布公告，只润色文案",
+        "family": "page_copy_only",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.25,
+        "matched_concepts": [
+          "artifact"
+        ],
+        "negative_pattern": "只润色文案"
+      },
+      {
+        "prompt": "列出这个组件库的文件结构，不做 UI 审查",
+        "family": "inventory_only",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.75,
+        "matched_concepts": [
+          "artifact",
+          "design",
+          "interface_action"
+        ],
+        "negative_pattern": "不做 UI 审查"
+      }
+    ]
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "recommended_threshold": 0.34,
+  "description_required_concepts": [
+    "design",
+    "interface_action",
+    "artifact"
+  ],
+  "positive_concepts": {
+    "design": [
+      "design",
+      "UI",
+      "UX",
+      "界面",
+      "设计",
+      "视觉"
+    ],
+    "interface_action": [
+      "redesign",
+      "optimize",
+      "audit",
+      "polish",
+      "重设计",
+      "改版",
+      "优化",
+      "审查",
+      "打磨",
+      "方案"
+    ],
+    "artifact": [
+      "page",
+      "component",
+      "dashboard",
+      "design system",
+      "页面",
+      "组件",
+      "仪表盘",
+      "落地页",
+      "设计系统"
+    ],
+    "preview": [
+      "direction",
+      "preview",
+      "mockup",
+      "方向",
+      "预览",
+      "样机",
+      "风格"
+    ]
+  },
+  "negative_patterns": [
+    "不要改界面",
+    "只改业务逻辑",
+    "只润色文案",
+    "只翻译",
+    "不要做设计",
+    "不做 UI 审查",
+    "先不要修改",
+    "not the interface",
+    "business logic only",
+    "copy edit only",
+    "translation only"
+  ],
+  "should_trigger": [
+    {
+      "text": "帮我重新设计这个产品首页，先给四个能直接看的方向",
+      "family": "cn_redesign_preview"
+    },
+    {
+      "text": "把这个 SaaS 落地页改版，做出更鲜明的视觉方案",
+      "family": "cn_landing_redesign"
+    },
+    {
+      "text": "审查这个仪表盘的 UI 层级、组件状态和移动端体验",
+      "family": "cn_dashboard_audit"
+    },
+    {
+      "text": "打磨这个已有页面，去掉 AI 味但不要推倒重来",
+      "family": "cn_polish_existing"
+    },
+    {
+      "text": "参考 Linear 的风格，为开发者工具建立一套设计系统",
+      "family": "cn_design_system"
+    },
+    {
+      "text": "Redesign this dashboard UI and show me four distinct visual directions before implementation.",
+      "family": "en_dashboard_preview"
+    },
+    {
+      "text": "Polish this existing component and audit its UX states and responsive behavior.",
+      "family": "en_component_polish"
+    }
+  ],
+  "should_not_trigger": [
+    {
+      "text": "给这个 API 增加一个缓存层，只改业务逻辑，不要改界面",
+      "family": "backend_only"
+    },
+    {
+      "text": "只润色文案，把这段产品介绍写得更自然",
+      "family": "copy_only"
+    },
+    {
+      "text": "翻译这份设计系统文档，只翻译，不要做设计",
+      "family": "translation_only"
+    },
+    {
+      "text": "Fix the database migration; business logic only, not the interface.",
+      "family": "database_only"
+    }
+  ],
+  "near_neighbor": [
+    {
+      "text": "解释一下什么是 design system，先不要修改任何文件",
+      "family": "explain_only"
+    },
+    {
+      "text": "帮我给已有页面写一段发布公告，只润色文案",
+      "family": "page_copy_only"
+    },
+    {
+      "text": "列出这个组件库的文件结构，不做 UI 审查",
+      "family": "inventory_only"
+    }
+  ]
+}

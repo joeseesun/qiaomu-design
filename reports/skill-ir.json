@@ -1,0 +1,257 @@
+{
+  "schema_version": "2.0.0-qiaomu-lite",
+  "generated_at": "2026-09-04",
+  "package": {
+    "name": "qiaomu-design",
+    "version": "3.9.0",
+    "owner": "Qiaomu",
+    "maturity_tier": "governed",
+    "lifecycle_stage": "library",
+    "upstream_inspiration": "https://github.com/VoltAgent/awesome-design-md",
+    "upstream_sync": {}
+  },
+  "intent": {
+    "description": "为页面、组件和产品界面提供设计诊断、四方向可视化预览、设计系统编译、实现与视觉 QA。 在用户要求从零设计、重设计、优化 UI/UX、审查界面、建立设计系统或参考某种风格时使用； 不用于只改业务逻辑、纯文案润色或与界面无关的普通编码。默认由当前 Codex 直接执行， 只有用户在当前任务明确点名 K3 时才调用外部模型。\n",
+    "job_to_be_done": "把界面设计从场景诊断、四方向可视化选择推进到真实实现和浏览器验收。",
+    "target_users": [
+      "需要设计或重设计网页、组件和产品界面的创作者与开发者",
+      "需要审查、打磨或建立设计系统的产品团队"
+    ],
+    "inputs": [
+      "自然语言设计需求",
+      "现有项目文件或页面",
+      "参考网站、截图或设计系统",
+      "用户对方向样机的选择与反馈"
+    ],
+    "outputs": [
+      "设计读取、三拨盘和功能契约",
+      "四方向可交互预览页",
+      "项目级 DESIGN.md",
+      "真实界面代码与桌面/移动端验收证据"
+    ],
+    "exclusions": [
+      "与界面无关的普通编码",
+      "纯文案润色",
+      "未获授权的外部模型调用",
+      "仅因触发 skill 就注入乔木个人 Profile"
+    ],
+    "qiaomu_defaults": {
+      "copyright": "Copyright (c) 向阳乔木",
+      "x": "https://x.com/vista8",
+      "github": "https://github.com/joeseesun/"
+    }
+  },
+  "triggers": {
+    "should_trigger": [
+      "帮我重新设计这个产品首页，先给四个能直接看的方向",
+      "把这个 SaaS 落地页改版，做出更鲜明的视觉方案",
+      "审查这个仪表盘的 UI 层级、组件状态和移动端体验",
+      "打磨这个已有页面，去掉 AI 味但不要推倒重来",
+      "参考 Linear 的风格，为开发者工具建立一套设计系统",
+      "Redesign this dashboard UI and show me four distinct visual directions before implementation.",
+      "Polish this existing component and audit its UX states and responsive behavior."
+    ],
+    "should_not_trigger": [
+      "给这个 API 增加一个缓存层，只改业务逻辑，不要改界面",
+      "只润色文案，把这段产品介绍写得更自然",
+      "翻译这份设计系统文档，只翻译，不要做设计",
+      "Fix the database migration; business logic only, not the interface."
+    ],
+    "near_neighbor": [
+      "解释一下什么是 design system，先不要修改任何文件",
+      "帮我给已有页面写一段发布公告，只润色文案",
+      "列出这个组件库的文件结构，不做 UI 审查"
+    ]
+  },
+  "workflow": {
+    "router_rules": [
+      "每次开工先读 `references/user-preferences.md`。优先级为：当前用户要求与项目事实 > 偏好账本 > 本文件 > 按需参考。",
+      "设计、前端、UI、CSS、组件和页面任务默认由当前 Codex 直接完成。触发本 skill、任务复杂或以前用过 K3，都不构成外部模型授权。",
+      "只有用户在**当前任务**明确说“用 K3 / Kimi K3 / 调用 K3”时，才读取并使用 `qiaomu-model-cli`。K3 必须看到真实代码或截图；当前 Codex 仍负责 diff、测试和浏览器验收。",
+      "保护用户已有未提交改动。不得因设计任务重置、覆盖或顺手重构无关文件。"
+    ],
+    "compact_workflow": [
+      "审计信息层级、空间节奏、核心任务、情绪、响应式和现有交互状态。",
+      "重设计必须先从真实页面/代码提取现有色彩、字体、间距、圆角、阴影和组件规则；未获确认不覆盖既有设计系统。",
+      "功能型 UI 先判断任务属于导航、命令、选择、输入、阅读还是状态，并覆盖入口、进度、结果、异常、恢复和退出。",
+      "若用户只要诊断，交付有证据的诊断后停止；若用户要方案或重设计，继续 Phase 2。",
+      "固定 A/B/C/D 四个真实 mini mockup，同页比较；每个方向有独立 brief 和互斥硬约束，不是换色版本。",
+      "差异至少覆盖字体角色、明暗/色彩体系、布局结构，并通过“遮住颜色仍能区分”的检查。",
+      "开放命题可为每个方向使用私有随机创意种子并映射到媒介、时代、构图、材质、字体和动效轴；种子不进入页面内容，不能覆盖功能契约。",
+      "桌面默认 2×2、移动端单列；样机填满或居中、窄屏可读。选择按钮、说明区、三个中文拨盘和确认弹层遵守 `style-preview.md` 的固定协议。",
+      "一个方向可标“推荐”，但推荐不是授权；不设倒计时、不自动选择、不自动推进。",
+      "默认用 `scripts/qiaomu-design-preview-server.mjs --file <index.html> --exit-on-select` 打开回传服务。只有服务或浏览器不可用时才降级为 `file://`，并明确选择不会自动回传。",
+      "Phase 2 后保持当前工作流等待选择。只有观察到 `selection.json`、`QIAOMU_DESIGN_SELECTION::`，或用户在对话中明确选 A/B/C/D、授权“你定/按推荐继续”，才进入 Phase 3。",
+      "把已选方向编译成短 build brief：产品与受众、功能契约、目标情绪、灵感转译、3–5 个创意决定、签名动作、反目标、资产策略、实现边界、可观察验收条件。",
+      "先建立或更新项目级 `DESIGN.md` 作为唯一设计锚：主题、色板角色、排版、组件、布局、深度、Do/Don't、响应式、动效哲学。",
+      "从 58 站库选择 1–2 个供体，只提取 3–5 个具体 DNA 值；不复制品牌外观，不强行套 IBM、Apple 或 Linear 的脸。",
+      "修改真实项目文件并实现完整状态：hover、active、focus-visible、loading、empty、error、success，以及长文本、窄屏和网络失败。",
+      "第一轮完成后真实运行页面，截桌面与移动端图；从艺术总监、工程师、任务所有者/读者角度各找至少一个高影响问题。第二轮只修 3–5 个最关键问题，再截图复核。",
+      "最后一轮做减法：删除无语义卡片、重复标签/CTA、随机颜色、装饰性 glow、无目的动效和比原生控件更差的自定义控件。",
+      "完整读取并通过 `references/preflight.md` 后才交付。"
+    ],
+    "gate_ladder": [],
+    "output_contract": [
+      "诊断：设计读取、三拨盘、功能契约、真实问题与影响排序；不把建议写成已实现。",
+      "方向：可打开的四方向预览路径、推荐理由、回传方式；Phase 2 未有选择证据时不声称进入执行。",
+      "实现：真实修改文件、`DESIGN.md` 决策、运行命令、测试/构建结果、桌面与移动端截图检查、仍未验证的项目。",
+      "审查：问题按影响分级，尽量给文件与行号；只审查的请求不得擅自改码。",
+      "外部模型：只有获得当前任务授权才调用，并报告 provider/model、输入产物、退出状态和实际 diff；外部输出不代替独立验收。"
+    ]
+  },
+  "resources": {
+    "references": [
+      "references/animation-vocabulary.md",
+      "references/apple-fluid-interfaces.md",
+      "references/assets-and-readability.md",
+      "references/carbon-components.md",
+      "references/carbon-data-visualization.md",
+      "references/carbon-foundations.md",
+      "references/carbon-patterns.md",
+      "references/carbon-source-map.md",
+      "references/chinese-typography.md",
+      "references/craft-loop.md",
+      "references/creative-prompting.md",
+      "references/design-systems/airbnb/DESIGN.md",
+      "references/design-systems/airtable/DESIGN.md",
+      "references/design-systems/apple/DESIGN.md",
+      "references/design-systems/bmw/DESIGN.md",
+      "references/design-systems/cal/DESIGN.md",
+      "references/design-systems/claude/DESIGN.md",
+      "references/design-systems/clay/DESIGN.md",
+      "references/design-systems/clickhouse/DESIGN.md",
+      "references/design-systems/cohere/DESIGN.md",
+      "references/design-systems/coinbase/DESIGN.md",
+      "references/design-systems/composio/DESIGN.md",
+      "references/design-systems/cursor/DESIGN.md",
+      "references/design-systems/elevenlabs/DESIGN.md",
+      "references/design-systems/expo/DESIGN.md",
+      "references/design-systems/ferrari/DESIGN.md",
+      "references/design-systems/figma/DESIGN.md",
+      "references/design-systems/framer/DESIGN.md",
+      "references/design-systems/hashicorp/DESIGN.md",
+      "references/design-systems/ibm/DESIGN.md",
+      "references/design-systems/intercom/DESIGN.md",
+      "references/design-systems/kraken/DESIGN.md",
+      "references/design-systems/lamborghini/DESIGN.md",
+      "references/design-systems/linear.app/DESIGN.md",
+      "references/design-systems/lovable/DESIGN.md",
+      "references/design-systems/minimax/DESIGN.md",
+      "references/design-systems/mintlify/DESIGN.md",
+      "references/design-systems/miro/DESIGN.md",
+      "references/design-systems/mistral.ai/DESIGN.md",
+      "references/design-systems/mongodb/DESIGN.md",
+      "references/design-systems/notion/DESIGN.md",
+      "references/design-systems/nvidia/DESIGN.md",
+      "references/design-systems/ollama/DESIGN.md",
+      "references/design-systems/opencode.ai/DESIGN.md",
+      "references/design-systems/pinterest/DESIGN.md",
+      "references/design-systems/posthog/DESIGN.md",
+      "references/design-systems/raycast/DESIGN.md",
+      "references/design-systems/renault/DESIGN.md",
+      "references/design-systems/replicate/DESIGN.md",
+      "references/design-systems/resend/DESIGN.md",
+      "references/design-systems/revolut/DESIGN.md",
+      "references/design-systems/runwayml/DESIGN.md",
+      "references/design-systems/sanity/DESIGN.md",
+      "references/design-systems/sentry/DESIGN.md",
+      "references/design-systems/spacex/DESIGN.md",
+      "references/design-systems/spotify/DESIGN.md",
+      "references/design-systems/stripe/DESIGN.md",
+      "references/design-systems/supabase/DESIGN.md",
+      "references/design-systems/superhuman/DESIGN.md",
+      "references/design-systems/tesla/DESIGN.md",
+      "references/design-systems/together.ai/DESIGN.md",
+      "references/design-systems/uber/DESIGN.md",
+      "references/design-systems/vercel/DESIGN.md",
+      "references/design-systems/voltagent/DESIGN.md",
+      "references/design-systems/warp/DESIGN.md",
+      "references/design-systems/webflow/DESIGN.md",
+      "references/design-systems/wise/DESIGN.md",
+      "references/design-systems/x.ai/DESIGN.md",
+      "references/design-systems/zapier/DESIGN.md",
+      "references/design-systems-catalog.md",
+      "references/divergence-playbook.md",
+      "references/engineering-checklist.md",
+      "references/evolution-protocol.md",
+      "references/motion-craft.md",
+      "references/motion-review.md",
+      "references/preflight.md",
+      "references/style-preview.md",
+      "references/user-preferences.md"
+    ],
+    "scripts": [],
+    "evals": [
+      "evals/trigger_cases.json"
+    ],
+    "reports": [
+      "reports/creation-handoff.md",
+      "reports/prior-art-research.md",
+      "reports/skill-ir.json",
+      "reports/trigger-eval.json"
+    ]
+  },
+  "portability": {
+    "canonical_format": "agent-skills",
+    "adapter_targets": [
+      "openai",
+      "claude",
+      "generic",
+      "agent-skills-compatible"
+    ],
+    "activation": {
+      "mode": "automatic",
+      "paths": []
+    },
+    "execution": {
+      "context": "inline",
+      "shell": "zsh"
+    },
+    "trust": {
+      "source_tier": "local",
+      "remote_inline_execution": "forbid",
+      "generated_public_claims": "evidence-bound"
+    },
+    "permissions": {
+      "network": "Only for user-scoped reference research, approved media, or publication verification; local preview binds to loopback.",
+      "file_write": "Only requested project files, design previews, DESIGN.md, and explicitly approved skill evolution records.",
+      "subprocess": "Project-provided checks, local preview scripts, browser tooling, and explicitly authorized external model wrappers.",
+      "interactive": "Ask only when a missing choice changes the design direction or external mutation scope."
+    },
+    "degradation": {
+      "openai": "canonical source with local file and browser tools",
+      "claude": "canonical agent-skill source",
+      "generic": "canonical source; interactive preview may fall back to static HTML",
+      "agent-skills-compatible": "canonical source"
+    }
+  },
+  "gates": {
+    "scaffold": [
+      "accurate design trigger and exclusions",
+      "natural-language examples"
+    ],
+    "production": [
+      "root-only SKILL.md",
+      "four-direction preview protocol",
+      "trigger evaluation",
+      "desktop and mobile verification"
+    ],
+    "library": [
+      "Skill IR",
+      "reference routing",
+      "quarterly review cadence"
+    ],
+    "governed": [
+      "explicit external-model authorization",
+      "secret and public-claim gates",
+      "feature-branch PR release",
+      "clean installation verification"
+    ]
+  },
+  "evidence_boundary": {
+    "generated_reports_are_evidence": true,
+    "planned_work_is_evidence": false,
+    "missing_external_or_human_evidence_label": "missing evidence",
+    "public_claim_policy": "claim only what local validation, install proof, human review, or provider-backed evidence actually supports"
+  }
+}

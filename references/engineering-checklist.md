@@ -88,6 +88,8 @@
 
 - `touch-action: manipulation` 防双击缩放延迟
 - modal/drawer 内 `overscroll-behavior: contain`
+- 桌面端并列滚动工作区（侧栏 + 主内容、文件树 + 编辑器）必须各自拥有明确的可用高度；固定侧栏保持视口满高，内部滚动容器用 `min-height: 0` + `overscroll-behavior: contain`，滚到底不得串联到相邻区域或 body
+- 移动端避免保留桌面的双滚动模型；折叠为单一主滚动区，横向索引条只承担导航
 - 拖拽中禁用文本选择
 - 全出血布局用 `env(safe-area-inset-*)` 适配刘海
 - `autoFocus` 仅桌面端单主输入场景

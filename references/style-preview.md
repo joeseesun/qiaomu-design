@@ -33,7 +33,7 @@
 默认还要启动本 skill 自带的本地预览回传服务：
 
 ```bash
-node /Users/joe/.agents/skills/qiaomu-design/scripts/qiaomu-design-preview-server.mjs \
+node ~/.agents/skills/qiaomu-design/scripts/qiaomu-design-preview-server.mjs \
   --file design-previews/YYYY-MM-DD-任务名/index.html
 ```
 
@@ -143,10 +143,10 @@ node /Users/joe/.agents/skills/qiaomu-design/scripts/qiaomu-design-preview-serve
 4. `GET /api/selection` 返回最新选择，便于调用方恢复状态
 5. 页面选择按钮、卡片点击、键盘 1-4 都先打开确认弹层；弹层确认后才调用 `sendSelection(...)`
 6. 执行代理启动预览后必须保持监听，不得发送 final 结束回合；推荐同时运行：
-   `node /Users/joe/.agents/skills/qiaomu-design/scripts/qiaomu-design-watch-selection.mjs --selection design-previews/YYYY-MM-DD-任务名/selection.json`
+   `node ~/.agents/skills/qiaomu-design/scripts/qiaomu-design-watch-selection.mjs --selection design-previews/YYYY-MM-DD-任务名/selection.json`
    watcher 默认使用文件事件，75ms 短轮询仅作兜底；不要再用 1s 轮询作为默认路径
 7. 执行环境允许时，优先使用更快的单进程路径：
-   `node /Users/joe/.agents/skills/qiaomu-design/scripts/qiaomu-design-preview-server.mjs --file ... --exit-on-select`
+   `node ~/.agents/skills/qiaomu-design/scripts/qiaomu-design-preview-server.mjs --file ... --exit-on-select`
    用户确认后服务会写入选择、打印哨兵并退出，调用方无需再等文件轮询
 
 静态 `file://` 只是降级路径：页面高亮 + 剪贴板复制"选 X"文本，并明确提示

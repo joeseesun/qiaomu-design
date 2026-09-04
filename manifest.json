@@ -1,0 +1,61 @@
+{
+  "name": "qiaomu-design",
+  "version": "3.9.0",
+  "owner": "Qiaomu",
+  "updated_at": "2026-09-04",
+  "status": "active",
+  "maturity_tier": "governed",
+  "lifecycle_stage": "library",
+  "context_budget_tier": "production",
+  "review_cadence": "quarterly",
+  "upstream_inspiration": "https://github.com/VoltAgent/awesome-design-md",
+  "qiaomu_defaults": {
+    "copyright": "Copyright (c) 向阳乔木",
+    "x": "https://x.com/vista8",
+    "github": "https://github.com/joeseesun/"
+  },
+  "target_platforms": [
+    "openai",
+    "claude",
+    "generic",
+    "agent-skills-compatible"
+  ],
+  "intent": {
+    "job_to_be_done": "把界面设计从场景诊断、四方向可视化选择推进到真实实现和浏览器验收。",
+    "target_users": [
+      "需要设计或重设计网页、组件和产品界面的创作者与开发者",
+      "需要审查、打磨或建立设计系统的产品团队"
+    ],
+    "inputs": [
+      "自然语言设计需求",
+      "现有项目文件或页面",
+      "参考网站、截图或设计系统",
+      "用户对方向样机的选择与反馈"
+    ],
+    "outputs": [
+      "设计读取、三拨盘和功能契约",
+      "四方向可交互预览页",
+      "项目级 DESIGN.md",
+      "真实界面代码与桌面/移动端验收证据"
+    ],
+    "exclusions": [
+      "与界面无关的普通编码",
+      "纯文案润色",
+      "未获授权的外部模型调用",
+      "仅因触发 skill 就注入乔木个人 Profile"
+    ]
+  },
+  "release_gates": [
+    "root_entrypoint_isolation",
+    "context_budget_validation",
+    "validate_skill",
+    "trigger_eval",
+    "skill_ir_export",
+    "readme_product_page",
+    "secret_scan",
+    "feature_branch_only_publication",
+    "pull_request_review_and_check_gate",
+    "github_release_creation",
+    "npx_discovery_and_clean_install"
+  ]
+}

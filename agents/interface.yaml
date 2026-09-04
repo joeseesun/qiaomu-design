@@ -1,0 +1,54 @@
+interface:
+  display_name: "Qiaomu Design"
+  short_description: "先看四个真实方向，再把选定界面实现并验收到可交付"
+  default_prompt: "Use $qiaomu-design to diagnose this interface, state the design read, three dials and functional contract, then follow the correct path. For a new design or redesign, create four mutually distinct visual mockups and wait for my explicit selection before implementation. For polish work, inspect the real artifact first and make focused changes. Keep K3 and other external models explicit-only, preserve existing project work, and verify implementation in a real browser on desktop and mobile before claiming completion."
+  examples:
+    - "帮我重新设计这个产品首页，先给四个能直接看的方向"
+    - "打磨这个已经能用的页面，去掉 AI 味但别推倒重来"
+    - "审查这个仪表盘的信息层级、状态和移动端问题，先不要改"
+    - "参考 Linear 的克制感，给我的开发者工具做一套设计系统"
+compatibility:
+  canonical_format: "agent-skills"
+  adapter_targets:
+    - "openai"
+    - "claude"
+    - "generic"
+    - "agent-skills-compatible"
+  activation:
+    mode: "automatic"
+    paths: []
+  execution:
+    context: "inline"
+    shell: "zsh"
+  trust:
+    source_tier: "local"
+    remote_inline_execution: "forbid"
+    generated_public_claims: "evidence-bound"
+  permissions:
+    network: "Only for user-scoped reference research, approved media, or publication verification; local preview binds to loopback."
+    file_write: "Only requested project files, design previews, DESIGN.md, and explicitly approved skill evolution records."
+    subprocess: "Project-provided checks, local preview scripts, browser tooling, and explicitly authorized external model wrappers."
+    interactive: "Ask only when a missing choice changes the design direction or external mutation scope."
+  degradation:
+    openai: "canonical source with local file and browser tools"
+    claude: "canonical agent-skill source"
+    generic: "canonical source; interactive preview may fall back to static HTML"
+    agent-skills-compatible: "canonical source"
+gates:
+  scaffold:
+    - "accurate design trigger and exclusions"
+    - "natural-language examples"
+  production:
+    - "root-only SKILL.md"
+    - "four-direction preview protocol"
+    - "trigger evaluation"
+    - "desktop and mobile verification"
+  library:
+    - "Skill IR"
+    - "reference routing"
+    - "quarterly review cadence"
+  governed:
+    - "explicit external-model authorization"
+    - "secret and public-claim gates"
+    - "feature-branch PR release"
+    - "clean installation verification"
