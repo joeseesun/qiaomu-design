@@ -1,9 +1,9 @@
 {
   "schema_version": "2.0.0-qiaomu-lite",
-  "generated_at": "2026-09-04",
+  "generated_at": "2026-10-13",
   "package": {
     "name": "qiaomu-design",
-    "version": "3.9.0",
+    "version": "3.10.0",
     "owner": "Qiaomu",
     "maturity_tier": "governed",
     "lifecycle_stage": "library",
@@ -11,11 +11,13 @@
     "upstream_sync": {}
   },
   "intent": {
-    "description": "为页面、组件和产品界面提供设计诊断、四方向可视化预览、设计系统编译、实现与视觉 QA。 在用户要求从零设计、重设计、优化 UI/UX、审查界面、建立设计系统或参考某种风格时使用； 不用于只改业务逻辑、纯文案润色或与界面无关的普通编码。默认由当前 Codex 直接执行， 只有用户在当前任务明确点名 K3 时才调用外部模型。\n",
-    "job_to_be_done": "把界面设计从场景诊断、四方向可视化选择推进到真实实现和浏览器验收。",
+    "description": "为页面、组件和产品界面提供设计诊断、四方向可视化预览、设计系统编译、实现与视觉 QA， 也创作与修改微信公众号封面、B站封面、YouTube 缩略图、小绿书配图和小红书封面，按平台检查裁切与可读性。 在用户要求从零设计、重设计、优化 UI/UX、审查界面、建立设计系统、参考某种风格， 或创作公众号封面、设计公号头图、修改微信文章封面、制作 B站封面、YouTube 封面、小绿书配图、小红书配图时使用； 不用于只改业务逻辑、纯文案润色或与界面无关的普通编码。默认由当前 Codex 直接执行， 只有用户在当前任务明确点名 K3 时才调用外部模型。\n",
+    "job_to_be_done": "把界面设计从场景诊断、四方向可视化选择推进到真实实现和浏览器验收。另提供公众号封面创作及横图/方图裁切验收。 提供 B站、YouTube、小绿书和小红书的平台封面打法与实际图片验收。",
     "target_users": [
       "需要设计或重设计网页、组件和产品界面的创作者与开发者",
-      "需要审查、打磨或建立设计系统的产品团队"
+      "需要审查、打磨或建立设计系统的产品团队",
+      "需要创作或修改微信公众号封面的作者",
+      "需要多平台封面与图文配图的创作者"
     ],
     "inputs": [
       "自然语言设计需求",
@@ -27,7 +29,9 @@
       "设计读取、三拨盘和功能契约",
       "四方向可交互预览页",
       "项目级 DESIGN.md",
-      "真实界面代码与桌面/移动端验收证据"
+      "真实界面代码与桌面/移动端验收证据",
+      "公众号封面实际图片与横图/居中方图/缩略图对照",
+      "平台打法结构化 JSON、按平台构图的封面/图文及尺寸与预览证据"
     ],
     "exclusions": [
       "与界面无关的普通编码",
@@ -49,7 +53,14 @@
       "打磨这个已有页面，去掉 AI 味但不要推倒重来",
       "参考 Linear 的风格，为开发者工具建立一套设计系统",
       "Redesign this dashboard UI and show me four distinct visual directions before implementation.",
-      "Polish this existing component and audit its UX states and responsive behavior."
+      "Polish this existing component and audit its UX states and responsive behavior.",
+      "创作公众号封面",
+      "基于这篇文章制作四张公号头图，检查 1:1 裁切",
+      "修改微信文章封面，保留背景，把标题与主体放进中央方图",
+      "制作 B站封面，突出实操成果",
+      "创作 YouTube 缩略图，留出时长区域",
+      "设计小绿书配图，三页讲清方法",
+      "制作小红书封面，数字加一个利益点"
     ],
     "should_not_trigger": [
       "给这个 API 增加一个缓存层，只改业务逻辑，不要改界面",
@@ -96,7 +107,8 @@
       "方向：可打开的四方向预览路径、推荐理由、回传方式；Phase 2 未有选择证据时不声称进入执行。",
       "实现：真实修改文件、`DESIGN.md` 决策、运行命令、测试/构建结果、桌面与移动端截图检查、仍未验证的项目。",
       "审查：问题按影响分级，尽量给文件与行号；只审查的请求不得擅自改码。",
-      "外部模型：只有获得当前任务授权才调用，并报告 provider/model、输入产物、退出状态和实际 diff；外部输出不代替独立验收。"
+      "外部模型：只有获得当前任务授权才调用，并报告 provider/model、输入产物、退出状态和实际 diff；外部输出不代替独立验收。",
+      "封面与图文：实际图片、平台与内容类型、真实尺寸、小图/裁切检查、来源等级与仍未验证的发布端表现；不以模板测试代替生成图验收。"
     ]
   },
   "resources": {
@@ -176,9 +188,12 @@
       "references/evolution-protocol.md",
       "references/motion-craft.md",
       "references/motion-review.md",
+      "references/platform-covers.md",
+      "references/platform-playbooks.json",
       "references/preflight.md",
       "references/style-preview.md",
-      "references/user-preferences.md"
+      "references/user-preferences.md",
+      "references/wechat-cover.md"
     ],
     "scripts": [],
     "evals": [

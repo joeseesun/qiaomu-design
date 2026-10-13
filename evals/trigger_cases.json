@@ -24,7 +24,10 @@
       "优化",
       "审查",
       "打磨",
-      "方案"
+      "方案",
+      "创作",
+      "制作",
+      "修改"
     ],
     "artifact": [
       "page",
@@ -35,7 +38,16 @@
       "组件",
       "仪表盘",
       "落地页",
-      "设计系统"
+      "设计系统",
+      "公众号封面",
+      "公号头图",
+      "微信文章封面",
+      "B站封面",
+      "YouTube 封面",
+      "YouTube 缩略图",
+      "小绿书配图",
+      "小红书封面",
+      "小红书配图"
     ],
     "preview": [
       "direction",
@@ -88,6 +100,34 @@
     {
       "text": "Polish this existing component and audit its UX states and responsive behavior.",
       "family": "en_component_polish"
+    },
+    {
+      "text": "创作公众号封面",
+      "family": "cn_wechat_cover_create"
+    },
+    {
+      "text": "基于这篇文章制作四张公号头图，检查 1:1 裁切",
+      "family": "cn_wechat_cover_variants"
+    },
+    {
+      "text": "修改微信文章封面，保留背景，把标题与主体放进中央方图",
+      "family": "cn_wechat_cover_refine"
+    },
+    {
+      "text": "制作 B站封面，突出实操成果",
+      "family": "cn_bilibili_cover"
+    },
+    {
+      "text": "创作 YouTube 缩略图，留出时长区域",
+      "family": "cn_youtube_thumbnail"
+    },
+    {
+      "text": "设计小绿书配图，三页讲清方法",
+      "family": "cn_wechat_image_note"
+    },
+    {
+      "text": "制作小红书封面，数字加一个利益点",
+      "family": "cn_xhs_cover"
     }
   ],
   "should_not_trigger": [

@@ -1,5 +1,11 @@
 # Changelog
 
+## v3.10.0 · 放大看图与去跳变（2026-10-13）
+
+1. `craft-loop.md` 两轮制渲染步骤加入 1×/4× 两档看图：放大后没东西可看的区域视为未完成，只补属于部件的真实细节；动画加 0.05× 慢放联系表。
+2. `motion-review.md` 新增“见到即标记”三项（参数跳变、边界硬切、离开视口仍运行）和修复步骤“去跳变”。
+3. 以上借鉴 `wheresryan22/anatomy`（MIT）的验收方法，按方法改写。
+
 ## v3.9.0 · 创意提示词编排与生产发布（2026-09-04）
 
 1. 新增 `references/evolution-protocol.md`，把自进化定义为 `observed → proposed → accepted → published → retired` 状态机，明确证据、冲突、发布和回滚规则。

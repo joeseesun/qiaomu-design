@@ -1,3 +1,9 @@
+## v3.10.0 — 2026-10-13
+
+- `craft-loop.md` gains 1×/4× review and slow-motion contact sheets; `motion-review.md` gains no-pop flags and a de-pop fix step.
+- Reference studied: `wheresryan22/anatomy` (MIT); methods adapted, no text or code copied. Highlights are design advantages (hypothesis) until output evidence exists.
+- Validation: package validator and unit tests rerun locally.
+
 # qiaomu-design v3.9.0 Creation Handoff
 
 ## 1. Result
