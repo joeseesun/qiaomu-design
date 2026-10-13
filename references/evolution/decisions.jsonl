@@ -4,3 +4,7 @@
 {"id":"dec-2607d3a2e2","timestamp":"2026-09-04T01:23:26.826Z","type":"decision","source":"cli","candidateId":"cand-2d2b11fe0c","status":"published","target":"references/user-preferences.md"}
 {"id":"dec-c4a172f4e2","timestamp":"2026-09-04T01:23:55.582Z","type":"decision","source":"cli","candidateId":"cand-6be0b7700f","status":"accepted","reason":"用户本次明确要求将文章提示词技巧用于优化 qiaomu-design"}
 {"id":"dec-f60fb6f1f6","timestamp":"2026-09-04T01:24:01.587Z","type":"decision","source":"cli","candidateId":"cand-6be0b7700f","status":"published","target":"references/user-preferences.md"}
+{"id":"dec-6d2774d298","timestamp":"2026-10-09T00:27:32.705Z","type":"decision","source":"cli","candidateId":"cand-fec8a20de0","status":"accepted","reason":"用户本轮明确授权将经验纳入 skill，之后创作公众号封面参考。"}
+{"id":"dec-7bfb4554e2","timestamp":"2026-10-09T00:27:32.743Z","type":"decision","source":"cli","candidateId":"cand-fec8a20de0","status":"published","target":"references/user-preferences.md"}
+{"id":"dec-4ca5fbbede","timestamp":"2026-10-09T00:58:41.805Z","type":"decision","source":"cli","candidateId":"cand-6877fce2a4","status":"accepted","reason":"用户本次明确授权把各平台设计经验沉淀到现有skill。"}
+{"id":"dec-c275f79ac5","timestamp":"2026-10-09T00:59:03.687Z","type":"decision","source":"cli","candidateId":"cand-6877fce2a4","status":"published","target":"references/user-preferences.md"}

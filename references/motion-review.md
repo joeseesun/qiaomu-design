@@ -46,6 +46,9 @@
 - hover 动效没包 `@media (hover: hover) and (pointer: fine)`
 - hold / press 场景进出同速
 - 多个元素一起出现而没有 30-80ms stagger
+- 发光、粒子、模糊、颜色在阶段切换时直接赋值（一帧跳变），没有起音/衰减包络或连续交叉过渡
+- 效果在边界、`if` 或画布边缘被硬切，而不是先衰减到 0
+- 演示型动画（自动轮播、idle tour）滚出视口仍在跑，或悬停/聚焦时不暂停
 
 ## 修复优先级
 
@@ -56,8 +59,9 @@
 5. **修可中断**：keyframes 改 transition；手势改 spring。
 6. **修性能**：layout 属性改 `transform` / `opacity`；必要时用 WAAPI。
 7. **修时序**：用户决定慢，系统响应快；enter/exit 不同速。
-8. **抛光**：crossfade 加微模糊、列表 stagger、`@starting-style`。
-9. **补 a11y 与 cohesion**：reduced-motion、hover gating、动效人格统一。
+8. **去跳变**：效果参数接包络（事件 burst、水平量 settle），阶段切换按驱动量连续过渡，淡出只变暗；用 0.05× 慢放联系表确认。
+9. **抛光**：crossfade 加微模糊、列表 stagger、`@starting-style`。
+10. **补 a11y 与 cohesion**：reduced-motion、hover gating、动效人格统一。
 
 ## 必须输出格式
 

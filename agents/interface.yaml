@@ -1,8 +1,10 @@
 interface:
   display_name: "Qiaomu Design"
-  short_description: "先看四个真实方向，再把选定界面实现并验收到可交付"
+  short_description: "界面设计与验收；公众号、B站、YouTube、小绿书和小红书的封面配图"
   default_prompt: "Use $qiaomu-design to diagnose this interface, state the design read, three dials and functional contract, then follow the correct path. For a new design or redesign, create four mutually distinct visual mockups and wait for my explicit selection before implementation. For polish work, inspect the real artifact first and make focused changes. Keep K3 and other external models explicit-only, preserve existing project work, and verify implementation in a real browser on desktop and mobile before claiming completion."
   examples:
+    - "根据这篇文章分别设计 B站封面、YouTube 缩略图和小绿书配图，按平台重新构图"
+    - "根据这篇文章创作四张公众号封面，同时检查居中 1:1 小图效果"
     - "帮我重新设计这个产品首页，先给四个能直接看的方向"
     - "打磨这个已经能用的页面，去掉 AI 味但别推倒重来"
     - "审查这个仪表盘的信息层级、状态和移动端问题，先不要改"

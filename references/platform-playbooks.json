@@ -1,0 +1,971 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-09",
+  "purpose": "可供提示词、套路画廊与画布共用的平台打法数据；尚未接入插件",
+  "coordinateSystem": "normalized_0_1_top_left",
+  "evidenceLevels": [
+    "official",
+    "official_recommendation",
+    "working_preset",
+    "design_strategy",
+    "design_heuristic",
+    "user_constraint"
+  ],
+  "mergePolicy": {
+    "order": [
+      "explicit_user",
+      "explicit_model",
+      "pattern_defaults"
+    ],
+    "missing": "absent_fields_only",
+    "preserve": [
+      0,
+      false,
+      "empty_array"
+    ],
+    "clear": "explicit_clear_contract"
+  },
+  "typography": {
+    "measure": "真实字体与宽度测量",
+    "latinWords": "保持完整词",
+    "cjk": "避免孤字；短标题优先尝试两行",
+    "overflow": "换行后再缩字号；仍须检查实际生成图"
+  },
+  "sources": [
+    {
+      "id": "yt-spec",
+      "url": "https://support.google.com/youtube/answer/72431?hl=en",
+      "kind": "official",
+      "status": "read",
+      "checkedAt": "2026-10-09"
+    },
+    {
+      "id": "yt-test",
+      "url": "https://support.google.com/youtube/answer/16391400?hl=en",
+      "kind": "official",
+      "status": "read",
+      "checkedAt": "2026-10-09"
+    },
+    {
+      "id": "bili-experience",
+      "url": "https://www.lovart.ai/zh/blog/zh-bilibili-cover-design",
+      "kind": "third_party",
+      "status": "read",
+      "checkedAt": "2026-10-09"
+    },
+    {
+      "id": "bili-crop",
+      "url": "https://www.bilibili.com/opus/517638323328040669",
+      "kind": "creator_observation",
+      "status": "read",
+      "checkedAt": "2026-10-09"
+    },
+    {
+      "id": "yt-style",
+      "url": "https://touhfa.art/blog/thumbnails/high-ctr-thumbnails-guide/",
+      "kind": "third_party",
+      "status": "read",
+      "checkedAt": "2026-10-09"
+    },
+    {
+      "id": "mrbeast-style",
+      "url": "https://touhfa.art/blog/thumbnails/mrbeast-thumbnail-article/",
+      "kind": "third_party",
+      "status": "read",
+      "checkedAt": "2026-10-09"
+    },
+    {
+      "id": "ctr-reference",
+      "url": "https://www.thumbmagic.co/blog/youtube-thumbnail-ctr-benchmarks",
+      "kind": "third_party",
+      "status": "read",
+      "checkedAt": "2026-10-09"
+    },
+    {
+      "id": "xhs-copy",
+      "url": "https://www.niaogebiji.com/article-702559-1.html",
+      "kind": "third_party",
+      "status": "read",
+      "checkedAt": "2026-10-09"
+    },
+    {
+      "id": "xhs-pattern",
+      "url": "https://www.27sem.com/article/7348",
+      "kind": "third_party",
+      "status": "read",
+      "checkedAt": "2026-10-09"
+    },
+    {
+      "id": "xhs-style",
+      "url": "https://www.huasheng.ai/insights/xiaohongshu-image-design/",
+      "kind": "third_party",
+      "status": "read",
+      "checkedAt": "2026-10-09"
+    },
+    {
+      "id": "xhs-zhihu",
+      "url": "https://zhuanlan.zhihu.com/p/30863774382",
+      "kind": "third_party",
+      "status": "unavailable",
+      "checkedAt": "2026-10-09"
+    },
+    {
+      "id": "wechat-canva",
+      "url": "https://www.canva.cn/learn/how-to-make-images-for-wechat-official-accounts/",
+      "kind": "third_party",
+      "status": "read",
+      "checkedAt": "2026-10-09"
+    },
+    {
+      "id": "green-format",
+      "url": "https://www.ixunke.com/article/655",
+      "kind": "third_party",
+      "status": "read",
+      "checkedAt": "2026-10-09"
+    }
+  ],
+  "platforms": [
+    {
+      "id": "bilibili_video",
+      "aliases": [
+        "B站封面",
+        "B 站封面",
+        "哔哩哔哩视频封面"
+      ],
+      "productIds": [
+        "bilibili",
+        "bilibili-43",
+        "bilibili-hd"
+      ],
+      "assetKind": "video_cover",
+      "positioning": "按分区、账号和视频内容选择风格；知识/工具内容先展示可信的成果与可学到的方法。",
+      "spec": {
+        "master": {
+          "width": 1200,
+          "height": 900,
+          "aspect": "4:3",
+          "evidenceLevel": "working_preset"
+        },
+        "officialStatus": "current_unified_video_requirement_unverified",
+        "sources": [
+          "bili-experience",
+          "bili-crop"
+        ],
+        "conflicts": [
+          "给定 Lovart 文推荐 16:9；创作者说明与本地产品另有 4:3、16:10 预设。以实际投稿入口为准。"
+        ]
+      },
+      "preview": {
+        "widths": [
+          240,
+          160
+        ],
+        "centerCrops": [
+          "16:10",
+          "16:9"
+        ],
+        "avoid": [
+          {
+            "id": "bottom-stats",
+            "x": 0,
+            "y": 0.78,
+            "w": 1,
+            "h": 0.22,
+            "reason": "保守为裁切与底部数据留空，非所有入口精确遮挡量",
+            "evidenceLevel": "design_strategy"
+          }
+        ],
+        "safe": [
+          {
+            "id": "key-band",
+            "x": 0.05,
+            "y": 0.18,
+            "w": 0.9,
+            "h": 0.6,
+            "reason": "兼容中心横向裁切并避开底部",
+            "evidenceLevel": "design_strategy"
+          }
+        ]
+      },
+      "rules": [
+        {
+          "text": "标题回答谁做了什么、产出是什么；6–12 字是可调整的经验起点。",
+          "evidenceLevel": "design_heuristic",
+          "sources": [
+            "bili-experience"
+          ]
+        },
+        {
+          "text": "真实截图/关键帧优先；概念插画不能当实际结果证据。",
+          "evidenceLevel": "design_heuristic",
+          "sources": [
+            "bili-experience"
+          ]
+        }
+      ],
+      "patterns": [
+        {
+          "id": "bili-result",
+          "label": "成果实操",
+          "use": "教程、开发过程",
+          "titleFormula": "{工具}＋{具体成果}",
+          "sample": {
+            "title": "用 TRAE 做了个插件"
+          },
+          "layout": {
+            "title": {
+              "id": "title",
+              "x": 0.07,
+              "y": 0.18,
+              "w": 0.55,
+              "h": 0.26,
+              "reason": "标题区",
+              "evidenceLevel": "design_strategy"
+            },
+            "subject": {
+              "id": "subject",
+              "x": 0.42,
+              "y": 0.4,
+              "w": 0.5,
+              "h": 0.35,
+              "reason": "结果主体",
+              "evidenceLevel": "design_strategy"
+            }
+          },
+          "palette": {
+            "bg": "#F5F1E7",
+            "ink": "#171B1A",
+            "accent": "#0CBA73",
+            "support": "#2458DD"
+          },
+          "decor": [
+            "单条手绘下划线"
+          ],
+          "subjectPrompt": "One recognisable finished artifact, authentic workspace or clearly conceptual laptop illustration, bright neutral daylight.",
+          "restrictions": [
+            "没有实测素材时不伪造产品界面",
+            "关键成果不能藏在底部"
+          ],
+          "evidenceLevel": "design_heuristic"
+        },
+        {
+          "id": "bili-tutorial",
+          "label": "方法拆解",
+          "use": "知识教程",
+          "titleFormula": "{动作}＋{步骤/方法}",
+          "sample": {
+            "title": "从调研到一个插件"
+          },
+          "layout": {
+            "title": {
+              "id": "title",
+              "x": 0.07,
+              "y": 0.2,
+              "w": 0.85,
+              "h": 0.24,
+              "reason": "短标题",
+              "evidenceLevel": "design_strategy"
+            },
+            "subject": {
+              "id": "subject",
+              "x": 0.12,
+              "y": 0.45,
+              "w": 0.76,
+              "h": 0.3,
+              "reason": "一条简洁方法链",
+              "evidenceLevel": "design_strategy"
+            }
+          },
+          "palette": {
+            "bg": "#F5F1E7",
+            "ink": "#171B1A",
+            "accent": "#0CBA73",
+            "support": "#2458DD"
+          },
+          "decor": [
+            "细线连接真实步骤"
+          ],
+          "subjectPrompt": "One clean demonstration object with a compact sequence of three meaningful stages, restrained technical illustration.",
+          "restrictions": [
+            "步骤必须来自实际内容",
+            "最多一个主焦点"
+          ],
+          "evidenceLevel": "design_heuristic"
+        },
+        {
+          "id": "bili-review",
+          "label": "诚实测评",
+          "use": "工具评测",
+          "titleFormula": "{产品}＋{具体问题}",
+          "sample": {
+            "title": "TRAE 升级了 不止写代码"
+          },
+          "layout": {
+            "title": {
+              "id": "title",
+              "x": 0.06,
+              "y": 0.18,
+              "w": 0.87,
+              "h": 0.24,
+              "reason": "标题",
+              "evidenceLevel": "design_strategy"
+            },
+            "subject": {
+              "id": "subject",
+              "x": 0.28,
+              "y": 0.43,
+              "w": 0.54,
+              "h": 0.32,
+              "reason": "产品主体",
+              "evidenceLevel": "design_strategy"
+            }
+          },
+          "palette": {
+            "bg": "#F5F1E7",
+            "ink": "#171B1A",
+            "accent": "#0CBA73",
+            "support": "#2458DD"
+          },
+          "decor": [
+            "一块高对比标题底色"
+          ],
+          "subjectPrompt": "A single clear product-related object, informative creator workshop styling, natural credible treatment.",
+          "restrictions": [
+            "不把观感相似写成能力胜出",
+            "不默认夸张表情"
+          ],
+          "evidenceLevel": "design_heuristic"
+        }
+      ]
+    },
+    {
+      "id": "youtube_longform",
+      "aliases": [
+        "YouTube封面",
+        "YouTube 缩略图",
+        "油管封面"
+      ],
+      "productIds": [
+        "youtube"
+      ],
+      "assetKind": "video_thumbnail",
+      "positioning": "在小尺寸讲清一个问题或结果；承诺与视频内容一致，标题和缩略图互补。",
+      "spec": {
+        "master": {
+          "width": 3840,
+          "height": 2160,
+          "aspect": "16:9",
+          "evidenceLevel": "official_recommendation"
+        },
+        "minimumWidth": 640,
+        "formats": [
+          "jpg",
+          "png"
+        ],
+        "uploadLimitsBytes": {
+          "mobileVideo": 2000000,
+          "desktopVideo": 50000000
+        },
+        "evidenceLevel": "official",
+        "sources": [
+          "yt-spec"
+        ],
+        "appliesTo": "longform; Shorts 与播客另查官方页面",
+        "actualGeneratedDimensionsMustBeRecorded": true
+      },
+      "preview": {
+        "widths": [
+          320,
+          160,
+          120
+        ],
+        "centerCrops": [],
+        "avoid": [
+          {
+            "id": "duration",
+            "x": 0.82,
+            "y": 0.86,
+            "w": 0.18,
+            "h": 0.14,
+            "reason": "产品预设的保守时长占位，不是所有客户端精确像素",
+            "evidenceLevel": "design_strategy"
+          }
+        ],
+        "safe": [
+          {
+            "id": "inner",
+            "x": 0.05,
+            "y": 0.05,
+            "w": 0.9,
+            "h": 0.78,
+            "reason": "主要文字与主体关键部位",
+            "evidenceLevel": "design_strategy"
+          }
+        ]
+      },
+      "rules": [
+        {
+          "text": "英文 3–5 词可作起点；中文按语义块及 120px 预览判断，不机械套词数。",
+          "evidenceLevel": "design_heuristic",
+          "sources": [
+            "yt-style"
+          ]
+        },
+        {
+          "text": "一脸或一物即可；无作者授权照片时用物体，不造作者脸；描边按相对画幅与背景判断。",
+          "evidenceLevel": "design_heuristic",
+          "sources": [
+            "yt-style",
+            "mrbeast-style"
+          ]
+        }
+      ],
+      "evaluation": {
+        "maxVariants": 3,
+        "winnerMetric": "watch_time",
+        "evidenceLevel": "official",
+        "sources": [
+          "yt-test"
+        ],
+        "notes": "不为用户自动上传测试；CTR 结合流量来源、曝光及观看质量解释。"
+      },
+      "patterns": [
+        {
+          "id": "yt-question",
+          "label": "一个悬念",
+          "use": "更新评测、内容疑问",
+          "titleFormula": "{核心问题}？",
+          "sample": {
+            "title": "像 CODEX？"
+          },
+          "layout": {
+            "title": {
+              "id": "title",
+              "x": 0.06,
+              "y": 0.13,
+              "w": 0.43,
+              "h": 0.66,
+              "reason": "大语义块",
+              "evidenceLevel": "design_strategy"
+            },
+            "subject": {
+              "id": "subject",
+              "x": 0.52,
+              "y": 0.1,
+              "w": 0.39,
+              "h": 0.71,
+              "reason": "单个主体",
+              "evidenceLevel": "design_strategy"
+            }
+          },
+          "palette": {
+            "bg": "#101929",
+            "ink": "#FFFFFF",
+            "accent": "#FFE44A",
+            "support": "#04BD72"
+          },
+          "decor": [
+            "可选一条有指向的连接线"
+          ],
+          "subjectPrompt": "One emerald product-related hero object on a dark studio backdrop, strong figure-ground separation, powerful simple silhouette.",
+          "restrictions": [
+            "疑问在视频中回应",
+            "时长区留空"
+          ],
+          "evidenceLevel": "design_heuristic"
+        },
+        {
+          "id": "yt-result",
+          "label": "结果冲击",
+          "use": "教程产出、实验",
+          "titleFormula": "{具体结果}",
+          "sample": {
+            "title": "不止写代码"
+          },
+          "layout": {
+            "title": {
+              "id": "title",
+              "x": 0.06,
+              "y": 0.12,
+              "w": 0.48,
+              "h": 0.65,
+              "reason": "短标题",
+              "evidenceLevel": "design_strategy"
+            },
+            "subject": {
+              "id": "subject",
+              "x": 0.55,
+              "y": 0.13,
+              "w": 0.36,
+              "h": 0.64,
+              "reason": "产出物",
+              "evidenceLevel": "design_strategy"
+            }
+          },
+          "palette": {
+            "bg": "#101929",
+            "ink": "#FFFFFF",
+            "accent": "#FFE44A",
+            "support": "#04BD72"
+          },
+          "decor": [
+            "至多一个强调色块"
+          ],
+          "subjectPrompt": "One large finished object or clear transformation metaphor, bold warm-yellow and black studio graphic, clean silhouette.",
+          "restrictions": [
+            "数字来自实际内容",
+            "不默认夸张脸"
+          ],
+          "evidenceLevel": "design_heuristic"
+        },
+        {
+          "id": "yt-comparison",
+          "label": "诚实对比",
+          "use": "真正覆盖两者的评测",
+          "titleFormula": "{A} vs {B}",
+          "sample": {
+            "title": "A vs B"
+          },
+          "layout": {
+            "title": {
+              "id": "title",
+              "x": 0.24,
+              "y": 0.1,
+              "w": 0.52,
+              "h": 0.21,
+              "reason": "一句问题",
+              "evidenceLevel": "design_strategy"
+            },
+            "subject": {
+              "id": "subject",
+              "x": 0.08,
+              "y": 0.36,
+              "w": 0.8,
+              "h": 0.43,
+              "reason": "两主体同尺度",
+              "evidenceLevel": "design_strategy"
+            }
+          },
+          "palette": {
+            "bg": "#101929",
+            "ink": "#FFFFFF",
+            "accent": "#FFE44A",
+            "support": "#04BD72"
+          },
+          "decor": [
+            "一条中轴分界"
+          ],
+          "subjectPrompt": "Two authentic comparable objects, equal visual scale, a single clear comparison axis, minimal dramatic studio composition.",
+          "restrictions": [
+            "必须有实际比较维度",
+            "不虚构优劣数据"
+          ],
+          "evidenceLevel": "design_heuristic"
+        }
+      ]
+    },
+    {
+      "id": "wechat_image_note",
+      "aliases": [
+        "小绿书",
+        "微信图文笔记",
+        "公众号图片消息"
+      ],
+      "productIds": [],
+      "assetKind": "image_note_carousel",
+      "positioning": "具体受众值得阅读、保存与转发的方法；首图引入、内页解释、末页行动。",
+      "spec": {
+        "master": {
+          "width": 1080,
+          "height": 1440,
+          "aspect": "3:4",
+          "evidenceLevel": "working_preset"
+        },
+        "officialStatus": "current_message_image_limits_unverified",
+        "sources": [
+          "green-format"
+        ],
+        "notes": "不将第三方的图数、字符数和裁切说法当官方限制；不是公众号2.35:1长文头图。"
+      },
+      "preview": {
+        "widths": [
+          360,
+          180
+        ],
+        "centerCrops": [
+          "1:1",
+          "16:9"
+        ],
+        "cropAppliesTo": "首图场景模拟；内页按全画幅阅读，不要求所有正文在横向窄条内",
+        "avoid": [],
+        "safe": [
+          {
+            "id": "inner",
+            "x": 0.07,
+            "y": 0.06,
+            "w": 0.86,
+            "h": 0.87,
+            "reason": "完整阅读安全边距",
+            "evidenceLevel": "design_strategy"
+          }
+        ]
+      },
+      "rules": [
+        {
+          "text": "首图短标题＋一个主视觉，内页可以提高信息密度，但一页一件事。",
+          "evidenceLevel": "design_strategy",
+          "sources": []
+        },
+        {
+          "text": "首图裁切仅作场景模拟，实际微信端由用户检查；不操作微信客户端或内嵌页面。",
+          "evidenceLevel": "user_constraint",
+          "sources": []
+        }
+      ],
+      "patterns": [
+        {
+          "id": "green-cover",
+          "label": "阅读型首图",
+          "use": "方法分享",
+          "titleFormula": "{主题}＋{我的用法}",
+          "sample": {
+            "title": "TRAE 升级后 我这样用"
+          },
+          "layout": {
+            "title": {
+              "id": "title",
+              "x": 0.09,
+              "y": 0.32,
+              "w": 0.82,
+              "h": 0.23,
+              "reason": "主题标题",
+              "evidenceLevel": "design_strategy"
+            },
+            "subject": {
+              "id": "subject",
+              "x": 0.17,
+              "y": 0.58,
+              "w": 0.66,
+              "h": 0.28,
+              "reason": "紧凑主视觉",
+              "evidenceLevel": "design_strategy"
+            }
+          },
+          "palette": {
+            "bg": "#F6F1E6",
+            "ink": "#173B2C",
+            "accent": "#05B77A",
+            "support": "#2E58BE"
+          },
+          "decor": [
+            "细分隔线",
+            "低调页码"
+          ],
+          "subjectPrompt": "One compact architectural workspace illustration, warm ivory paper, dark forest-green ink, careful editorial composition.",
+          "restrictions": [
+            "不混用小红书CTR结论",
+            "不是文章头图"
+          ],
+          "evidenceLevel": "design_heuristic"
+        },
+        {
+          "id": "green-method",
+          "label": "步骤内页",
+          "use": "实际流程拆解",
+          "titleFormula": "{起点}到{结果}",
+          "sample": {
+            "title": "从调研 到一个插件"
+          },
+          "layout": {
+            "title": {
+              "id": "title",
+              "x": 0.09,
+              "y": 0.09,
+              "w": 0.82,
+              "h": 0.19,
+              "reason": "内页标题",
+              "evidenceLevel": "design_strategy"
+            },
+            "body": {
+              "id": "body",
+              "x": 0.09,
+              "y": 0.33,
+              "w": 0.82,
+              "h": 0.49,
+              "reason": "两至三条完整方法",
+              "evidenceLevel": "design_strategy"
+            }
+          },
+          "palette": {
+            "bg": "#F6F1E6",
+            "ink": "#173B2C",
+            "accent": "#05B77A",
+            "support": "#2E58BE"
+          },
+          "decor": [
+            "小编号",
+            "单向连接线"
+          ],
+          "subjectPrompt": "A small sequence illustration with recognisable research and application artifacts, quiet editorial paper layout.",
+          "restrictions": [
+            "正文按完整图检查可读性",
+            "拉丁词不拆行"
+          ],
+          "evidenceLevel": "design_heuristic"
+        },
+        {
+          "id": "green-action",
+          "label": "结论行动页",
+          "use": "建议、下一步",
+          "titleFormula": "{结论}＋{行动}",
+          "sample": {
+            "title": "离开电脑 任务也能推进"
+          },
+          "layout": {
+            "title": {
+              "id": "title",
+              "x": 0.09,
+              "y": 0.09,
+              "w": 0.82,
+              "h": 0.22,
+              "reason": "结论",
+              "evidenceLevel": "design_strategy"
+            },
+            "subject": {
+              "id": "subject",
+              "x": 0.18,
+              "y": 0.37,
+              "w": 0.64,
+              "h": 0.25,
+              "reason": "轻量说明图",
+              "evidenceLevel": "design_strategy"
+            },
+            "body": {
+              "id": "body",
+              "x": 0.09,
+              "y": 0.67,
+              "w": 0.82,
+              "h": 0.19,
+              "reason": "下一步",
+              "evidenceLevel": "design_strategy"
+            }
+          },
+          "palette": {
+            "bg": "#F6F1E6",
+            "ink": "#173B2C",
+            "accent": "#05B77A",
+            "support": "#2E58BE"
+          },
+          "decor": [
+            "末页简短提醒"
+          ],
+          "subjectPrompt": "One conceptual phone linked to a laptop, simple calm diagram illustration, warm paper and emerald accents.",
+          "restrictions": [
+            "不把概念界面冒充实测",
+            "建议必须可执行"
+          ],
+          "evidenceLevel": "design_heuristic"
+        }
+      ]
+    },
+    {
+      "id": "xiaohongshu_note",
+      "aliases": [
+        "小红书",
+        "小红书封面",
+        "小红书配图"
+      ],
+      "productIds": [
+        "xhs",
+        "xhs-square"
+      ],
+      "assetKind": "note_cover",
+      "positioning": "按笔记主题面向具体陌生读者，快速说清用途；同时保持真实、可保存。",
+      "spec": {
+        "master": {
+          "width": 1080,
+          "height": 1440,
+          "aspect": "3:4",
+          "evidenceLevel": "working_preset"
+        },
+        "alternatives": [
+          "1:1",
+          "4:3"
+        ],
+        "sources": [
+          "xhs-pattern",
+          "xhs-style"
+        ],
+        "officialStatus": "source_guidance_not_official_requirement"
+      },
+      "preview": {
+        "widths": [
+          360,
+          180
+        ],
+        "centerCrops": [],
+        "avoid": [],
+        "safe": [
+          {
+            "id": "inner",
+            "x": 0.07,
+            "y": 0.06,
+            "w": 0.86,
+            "h": 0.86,
+            "reason": "经验性边距",
+            "evidenceLevel": "design_strategy"
+          }
+        ]
+      },
+      "rules": [
+        {
+          "text": "3–7 字、2–3 色和约20%留白可作起点；具体字号随画幅和实际测量决定。",
+          "evidenceLevel": "design_heuristic",
+          "sources": [
+            "xhs-style"
+          ]
+        },
+        {
+          "text": "单图、拼图、文字、对比按内容选；真实前后对比保持拍摄条件一致。",
+          "evidenceLevel": "design_heuristic",
+          "sources": [
+            "xhs-pattern"
+          ]
+        }
+      ],
+      "patterns": [
+        {
+          "id": "xhs-number",
+          "label": "数字干货",
+          "use": "清单、方法",
+          "titleFormula": "{实际数字}＋{利益点}",
+          "sample": {
+            "title": "3 个实用方法"
+          },
+          "layout": {
+            "title": {
+              "id": "title",
+              "x": 0.08,
+              "y": 0.1,
+              "w": 0.84,
+              "h": 0.25,
+              "reason": "数字与用途",
+              "evidenceLevel": "design_strategy"
+            },
+            "subject": {
+              "id": "subject",
+              "x": 0.15,
+              "y": 0.42,
+              "w": 0.7,
+              "h": 0.4,
+              "reason": "一主体",
+              "evidenceLevel": "design_strategy"
+            }
+          },
+          "palette": {
+            "bg": "#FFF5E6",
+            "ink": "#252525",
+            "accent": "#E85140",
+            "support": "#F3CB59"
+          },
+          "decor": [
+            "一个重点底框"
+          ],
+          "subjectPrompt": "One useful topic-specific object, high clarity, clean natural lighting and confident colour block.",
+          "restrictions": [
+            "不虚构数字",
+            "不照搬小绿书口吻"
+          ],
+          "evidenceLevel": "design_heuristic"
+        },
+        {
+          "id": "xhs-before-after",
+          "label": "真实对比",
+          "use": "可见的实际变化",
+          "titleFormula": "{之前}→{之后}",
+          "sample": {
+            "title": "改之前 改之后"
+          },
+          "layout": {
+            "title": {
+              "id": "title",
+              "x": 0.08,
+              "y": 0.08,
+              "w": 0.84,
+              "h": 0.19,
+              "reason": "对比主题",
+              "evidenceLevel": "design_strategy"
+            },
+            "subject": {
+              "id": "subject",
+              "x": 0.07,
+              "y": 0.32,
+              "w": 0.86,
+              "h": 0.52,
+              "reason": "同条件对比",
+              "evidenceLevel": "design_strategy"
+            }
+          },
+          "palette": {
+            "bg": "#FFF5E6",
+            "ink": "#252525",
+            "accent": "#E85140",
+            "support": "#F3CB59"
+          },
+          "decor": [
+            "简单分界"
+          ],
+          "subjectPrompt": "Two authentic same-angle views showing a genuine difference, matched lighting and scale.",
+          "restrictions": [
+            "必须有真实前后素材"
+          ],
+          "evidenceLevel": "design_heuristic"
+        },
+        {
+          "id": "xhs-checklist",
+          "label": "收藏清单",
+          "use": "实用笔记",
+          "titleFormula": "{人群/场景}＋{清单}",
+          "sample": {
+            "title": "新手工具清单"
+          },
+          "layout": {
+            "title": {
+              "id": "title",
+              "x": 0.08,
+              "y": 0.08,
+              "w": 0.84,
+              "h": 0.23,
+              "reason": "用途",
+              "evidenceLevel": "design_strategy"
+            },
+            "body": {
+              "id": "body",
+              "x": 0.08,
+              "y": 0.35,
+              "w": 0.84,
+              "h": 0.48,
+              "reason": "短列表",
+              "evidenceLevel": "design_strategy"
+            }
+          },
+          "palette": {
+            "bg": "#FFF5E6",
+            "ink": "#252525",
+            "accent": "#E85140",
+            "support": "#F3CB59"
+          },
+          "decor": [
+            "简洁列表标记"
+          ],
+          "subjectPrompt": "Small contextual product illustration, tactile warm editorial stationery, typography-led layout.",
+          "restrictions": [
+            "正文手机尺寸可读",
+            "不用通用6%CTR门槛"
+          ],
+          "evidenceLevel": "design_heuristic"
+        }
+      ]
+    }
+  ]
+}

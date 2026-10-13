@@ -9,8 +9,8 @@
   ],
   "missing_description_concepts": [],
   "summary": {
-    "total": 14,
-    "passed": 14,
+    "total": 21,
+    "passed": 21,
     "false_positive": 0,
     "false_negative": 0,
     "pass_rate": 1.0
@@ -113,6 +113,97 @@
           "interface_action"
         ],
         "negative_pattern": null
+      },
+      {
+        "prompt": "创作公众号封面",
+        "family": "cn_wechat_cover_create",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 0.5,
+        "matched_concepts": [
+          "artifact",
+          "interface_action"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "基于这篇文章制作四张公号头图，检查 1:1 裁切",
+        "family": "cn_wechat_cover_variants",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 0.5,
+        "matched_concepts": [
+          "artifact",
+          "interface_action"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "修改微信文章封面，保留背景，把标题与主体放进中央方图",
+        "family": "cn_wechat_cover_refine",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 0.5,
+        "matched_concepts": [
+          "artifact",
+          "interface_action"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "制作 B站封面，突出实操成果",
+        "family": "cn_bilibili_cover",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 0.5,
+        "matched_concepts": [
+          "artifact",
+          "interface_action"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "创作 YouTube 缩略图，留出时长区域",
+        "family": "cn_youtube_thumbnail",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 0.5,
+        "matched_concepts": [
+          "artifact",
+          "interface_action"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "设计小绿书配图，三页讲清方法",
+        "family": "cn_wechat_image_note",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 0.5,
+        "matched_concepts": [
+          "artifact",
+          "design"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "制作小红书封面，数字加一个利益点",
+        "family": "cn_xhs_cover",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 0.5,
+        "matched_concepts": [
+          "artifact",
+          "interface_action"
+        ],
+        "negative_pattern": null
       }
     ],
     "should_not_trigger": [
@@ -169,10 +260,11 @@
         "expected_trigger": false,
         "predicted_trigger": false,
         "passed": true,
-        "score": 0.5,
+        "score": 0.75,
         "matched_concepts": [
           "artifact",
-          "design"
+          "design",
+          "interface_action"
         ],
         "negative_pattern": "先不要修改"
       },

@@ -317,3 +317,19 @@
 - 原话摘录："读取这篇文章中的提示词技巧，优化我们的乔木设计skill"
 - 收录：2026-09-04｜状态：生效
 - 证据：https://www.lennysnewsletter.com/p/how-to-turn-your-ai-into-a-world, https://pub.sakana.ai/ssot/
+
+### P-48 · 创作或修改公众号封面时主动读取 wechat-cover.md；核心标题与主体兼顾 2.35:1 横图和居中 1:1 方图，交付前检查真实裁切与缩略辨识度。
+- 级别：情境规则
+- 何时适用：公众号封面、公号头图、微信文章封面的创作与修改
+- 规则：创作或修改公众号封面时主动读取 wechat-cover.md；核心标题与主体兼顾 2.35:1 横图和居中 1:1 方图，交付前检查真实裁切与缩略辨识度。
+- 原话摘录："能不能把这个公众号封面设计经验融入到 qiaomu design skill 中，以后我说创作公众号封面时你来参考？"
+- 收录：2026-10-09｜状态：生效
+- 证据：references/wechat-cover.md
+
+### P-49 · 创作 B站、YouTube、小绿书或小红书封面配图时，主动读平台打法库，分开平台与内容类型，按读者承诺重新构图；规格与数值按来源等级核查，交付实际图片、小图与裁切证据。
+- 级别：情境规则
+- 何时适用：多平台封面与图文
+- 规则：创作 B站、YouTube、小绿书或小红书封面配图时，主动读平台打法库，分开平台与内容类型，按读者承诺重新构图；规格与数值按来源等级核查，交付实际图片、小图与裁切证据。
+- 原话摘录："每个平台的设计风格和调性都不一样，设计B站封面、YouTube封面、小绿书配图，沉淀好了也放到skill中"
+- 收录：2026-10-09｜状态：生效
+- 证据：/Users/joe/Nutstore Files/.agents/skills/qiaomu-design/references/platform-covers.md, /Users/joe/Nutstore Files/.agents/skills/qiaomu-design/references/platform-playbooks.json, /Users/joe/Documents/ChatGPT/日常对话/output/platform-covers-20261009/preview-crops.png
